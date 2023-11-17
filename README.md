@@ -377,7 +377,8 @@ ggplot(data = demo) +
   ylab("") +
   scale_color_gradient2(low="#F5F5DC", mid = "#FFA500", high="#8B0000", 
                         midpoint = mean(demo$mean_hpsa_score),
-                        name = "Average County HPSA Score")
+                        name = "Average County HPSA Score") +
+  theme(legend.position = "bottom")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
