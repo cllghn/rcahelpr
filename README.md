@@ -31,7 +31,7 @@ test <- data.frame(
   "person" = c("chris", "maeve", "joseph", "brooks"),
   "org" = c("csg", "wdoc", "ccjbh", "asu"),
   "years_in_org" = c(1, 0.3, 0.2, NA),
-  "role" = factor(c("mentor", "rca", "rca", "mentor"))
+  "role" = as.factor(c("mentor", "rca", "rca", "mentor"))
 )
 
 # Create codebook
@@ -135,7 +135,7 @@ Factor
 Categorical variable with 2 levels: mentor, rca
 </td>
 <td style="text-align:left;">
-2 Unique factors: <br> mentor (n=2) <br> rca (n=2) <br> NA (n=NA)
+2 Unique factors: mentor, rca
 </td>
 <td style="text-align:right;">
 2
@@ -268,7 +268,7 @@ Factor
 Categorical variable with 2 levels: mentor, rca
 </td>
 <td style="text-align:left;">
-2 Unique factors: <br> mentor (n=2) <br> rca (n=2) <br> NA (n=NA)
+2 Unique factors: mentor, rca
 </td>
 <td style="text-align:right;">
 2
