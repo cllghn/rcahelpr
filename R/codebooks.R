@@ -118,14 +118,9 @@ make_codebook <- function(input_df, return_df = TRUE, format = NULL,
       ),
       "character" = ifelse(
         length(unique(column)) <= 3,
-        sprintf("%i Unique strings: <br> %s (n=%s) <br> %s (n=%s) <br> %s (n=%s)", 
+        sprintf("%i Unique strings: %s", 
                 length(unique(column)),
-                names(table(column)[order(table(column), decreasing = TRUE)][1]),
-                table(column)[order(table(column), decreasing = TRUE)][1],
-                names(table(column)[order(table(column), decreasing = TRUE)][2]),
-                table(column)[order(table(column), decreasing = TRUE)][2],
-                names(table(column)[order(table(column), decreasing = TRUE)][3]),
-                table(column)[order(table(column), decreasing = TRUE)][3]
+                paste(unique(column), collapse = ", ")
         ),
         sprintf("%i unique strings, top three: <br> %s (n=%s) <br> %s (n=%s) <br> %s (n=%s)",
                 length(unique(column)),
@@ -136,7 +131,21 @@ make_codebook <- function(input_df, return_df = TRUE, format = NULL,
                 names(table(column)[order(table(column), decreasing = TRUE)][3]),
                 table(column)[order(table(column), decreasing = TRUE)][3])
       ),
-      "factor" = ""
+      "factor" = ifelse(
+        length(unique(column)) <= 3,
+        sprintf("%i Unique factors: %s", 
+                length(unique(column)),
+                paste(unique(column), collapse = ", ")
+        ),
+        sprintf("%i unique factors, top three: <br> %s (n=%s) <br> %s (n=%s) <br> %s (n=%s)",
+                length(unique(column)),
+                names(table(column)[order(table(column), decreasing = TRUE)][1]),
+                table(column)[order(table(column), decreasing = TRUE)][1],
+                names(table(column)[order(table(column), decreasing = TRUE)][2]),
+                table(column)[order(table(column), decreasing = TRUE)][2],
+                names(table(column)[order(table(column), decreasing = TRUE)][3]),
+                table(column)[order(table(column), decreasing = TRUE)][3])
+      )
     )
     stats
   }

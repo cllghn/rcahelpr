@@ -31,7 +31,7 @@ test <- data.frame(
   "person" = c("chris", "maeve", "joseph", "brooks"),
   "org" = c("csg", "wdoc", "ccjbh", "asu"),
   "years_in_org" = c(1, 0.3, 0.2, NA),
-  "role" = c("mentor", "rca", "rca", "mentor")
+  "role" = factor(c("mentor", "rca", "rca", "mentor"))
 )
 
 # Create codebook
@@ -129,13 +129,13 @@ Min: 0.2 <br> Avg: 0.5 <br> Median: 0.3 <br> Max: 1 <br> SD: 0.44
 role
 </td>
 <td style="text-align:left;">
-Character
+Factor
 </td>
 <td style="text-align:left;">
-Unique strings: mentor, rca.
+Categorical variable with 2 levels: mentor, rca
 </td>
 <td style="text-align:left;">
-2 Unique strings: <br> mentor (n=2) <br> rca (n=2) <br> NA (n=NA)
+2 Unique factors: <br> mentor (n=2) <br> rca (n=2) <br> NA (n=NA)
 </td>
 <td style="text-align:right;">
 2
@@ -262,13 +262,13 @@ Yet more useful information
 role
 </td>
 <td style="text-align:left;">
-Character
+Factor
 </td>
 <td style="text-align:left;">
-Unique strings: mentor, rca.
+Categorical variable with 2 levels: mentor, rca
 </td>
 <td style="text-align:left;">
-2 Unique strings: <br> mentor (n=2) <br> rca (n=2) <br> NA (n=NA)
+2 Unique factors: <br> mentor (n=2) <br> rca (n=2) <br> NA (n=NA)
 </td>
 <td style="text-align:right;">
 2
