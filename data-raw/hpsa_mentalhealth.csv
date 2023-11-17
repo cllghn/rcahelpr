@@ -1,0 +1,150 @@
+HPSA_Discipline_Class,HPSA_Name,HPSA_ID,County_Equivalent_Name,Designation_Type,HPSA_Population_Type,HPSA_Score,HPSA_Provider_Ratio_Goal,HPSA_FTE,HPSA_Designation_Population,HPSA_Formal_Ratio,HPSA_Shortage,HPSA_Status,HPSA_Designation_Date,HPSA_Designation_Last_Update_Dat,Data_Warehouse_Record_Create_Dat
+Mental Health,MSSA 61 Arvin,7061038571,Kern,High Needs Geographic HPSA,Geographic Population,16,20000:1,0,42448,,2.83,Designated,11/27/2012,9/7/2021,1/17/2023
+Mental Health,MSSA 35e/Fresno South and West,7061164223,Fresno,High Needs Geographic HPSA,Geographic Population,19,20000:1,1.63,91910,56387:1,4.5,Designated,3/14/2022,3/14/2022,1/17/2023
+Mental Health,LI - MSSA 139a/Natomas/North Highlands,7061261199,Sacramento,HPSA Population,Low Income Population HPSA,18,20000:1,0,63651,,4.24,Proposed For Withdrawal,3/25/2021,9/10/2021,1/17/2023
+Mental Health,LI/MFW-Mendocino County,7061268703,Mendocino,HPSA Population,Low Income Migrant Farmworker Population HPSA,19,20000:1,0,34139,,2.28,Designated,12/1/2017,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 161h/El Cajon Central &amp; South,7061272528,San Diego,HPSA Population,Low Income Population HPSA,18,20000:1,0.3488,39352,112821:1,2.2712,Designated,7/23/2018,9/10/2021,1/17/2023
+Mental Health,LI/MSSA 181a-Goleta South,7061306396,Santa Barbara,HPSA Population,Low Income Population HPSA,19,20000:1,0.1438,39155,272288:1,2.4662,Designated,11/20/2020,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 116l/Anaheim Central,7061311085,Orange,HPSA Population,Low Income Population HPSA,16,20000:1,0.243,43513,179066:1,2.657,Designated,3/8/2022,3/8/2022,1/17/2023
+Mental Health,LI - MSSA 35c/Fresno West Central,7061355477,Fresno,HPSA Population,Low Income Population HPSA,18,20000:1,1.0875,49739,45737:1,2.2325,Designated,8/6/2021,8/6/2021,1/17/2023
+Mental Health,MSSA 146/Big Bear Lake,7061496655,San Bernardino,High Needs Geographic HPSA,Geographic Population,18,20000:1,0.5,26087,52174:1,1.24,Designated,1/3/2022,1/3/2022,1/17/2023
+Mental Health,MSSA 31 &amp; 32 - Sanger /Reedley,7061528804,Fresno,High Needs Geographic HPSA,Geographic Population,19,20000:1,0.875,171270,195737:1,10.545,Proposed For Withdrawal,2/28/2008,9/10/2021,1/17/2023
+Mental Health,"MSSAs 62,63,64-Tehachapi/Lake Isabella/Ridgecrest",7061534924,Kern,High Needs Geographic HPSA,Geographic Population,20,20000:1,1,81599,81599:1,4.44,Designated,11/15/2012,9/10/2021,1/17/2023
+Mental Health,LI-MSSA 210.1-Santa Rosa,7061623026,Sonoma,HPSA Population,Low Income Population HPSA,11,20000:1,1.49,61029,40959:1,2.58,Proposed For Withdrawal,10/11/2016,8/27/2021,1/17/2023
+Mental Health,MSSA 107/Soledad,7061677076,Monterey,High Needs Geographic HPSA,Geographic Population,17,20000:1,0,47992,,3.2,Designated,12/23/2021,12/23/2021,1/17/2023
+Mental Health,LI - MSSA 78.2sss/Lynwood North Central,7061779754,Los Angeles,HPSA Population,Low Income Population HPSA,17,20000:1,0.25,35707,142828:1,2.13,Proposed For Withdrawal,12/31/2020,9/10/2021,1/17/2023
+Mental Health,Shasta County,7061865217,Shasta,High Needs Geographic HPSA,Geographic Population,17,20000:1,4,176274,44069:1,7.75,Designated,9/22/2016,9/10/2021,1/17/2023
+Mental Health,LI/H/MFW-Humboldt County,7061872852,Humboldt,HPSA Population,Low Income Homeless Migrant Farmworker Population HPSA,20,20000:1,0,55177,,3.68,Designated,10/5/2016,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 156e/Escondido Central and South,7061949910,San Diego,HPSA Population,Low Income Population HPSA,17,20000:1,0.8,61523,76904:1,3.3,Designated,3/8/2022,3/8/2022,1/17/2023
+Mental Health,LI/MSSA 135a-d/Riverside/Woodcrest/Corona East,7062020774,Riverside,HPSA Population,Low Income Population HPSA,11,20000:1,7.59,180912,23836:1,4.47,Designated,9/28/2021,9/28/2021,1/17/2023
+Mental Health,Del Norte County,7062256292,Del Norte,High Needs Geographic HPSA,Geographic Population,20,20000:1,0,24448,,1.63,Designated,8/21/1990,9/10/2021,1/17/2023
+Mental Health,Tehama County,7062259318,Tehama,High Needs Geographic HPSA,Geographic Population,21,20000:1,1,63142,63142:1,3.21,Designated,9/6/1989,9/10/2021,1/17/2023
+Mental Health,LI/MFW - MSSA 180.1/Santa Maria,7062407340,Santa Barbara,HPSA Population,Low Income Migrant Farmworker Population HPSA,13,20000:1,0,54610,,3.64,Designated,12/4/2015,9/10/2021,1/17/2023
+Mental Health,Colusa County,7062564878,Colusa,High Needs Geographic HPSA,Geographic Population,11,20000:1,0.65,21273,32728:1,0.77,Designated,6/25/2007,9/10/2021,1/17/2023
+Mental Health,MSSA 18d/Antioch North and West,7062709674,Contra Costa,High Needs Geographic HPSA,Geographic Population,14,20000:1,0,103901,,6.93,Proposed For Withdrawal,6/18/2008,9/10/2021,1/17/2023
+Mental Health,MSSA's 105 & 106/King City/San Ardo,7062754675,Monterey,High Needs Geographic HPSA,Geographic Population,19,20000:1,0,20908,,1.39,Designated,4/13/2017,9/10/2021,1/17/2023
+Mental Health,LI/MSSA 131a/133.3/135f-Murrieta/Mead Valley/Corona South,7062771987,Riverside,HPSA Population,Low Income Population HPSA,12,20000:1,2.94,93837,31917:1,3.32,Proposed For Withdrawal,8/3/2018,9/10/2021,1/17/2023
+Mental Health,MSSAs 178.1/178.2/179/180.2 - Solvang/Lompoc/Guadalupe,7062778515,Santa Barbara,Geographic HPSA,Geographic Population,15,30000:1,0.875,88705,101377:1,3.565,Designated,11/8/2021,11/8/2021,1/17/2023
+Mental Health,MSSA 78.2s-South Central Southwest,7062837861,Los Angeles,High Needs Geographic HPSA,Geographic Population,15,20000:1,0.25,101491,405964:1,6.52,Designated,5/7/2020,8/18/2021,1/17/2023
+Mental Health,LI-MSSA 78.2ss/Pomona E &amp; S,7062910737,Los Angeles,HPSA Population,Low Income Population HPSA,17,20000:1,0,57709,,3.85,Designated,7/8/2020,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 161j/Imperial Beach,7063002619,San Diego,HPSA Population,Low Income Population HPSA,17,20000:1,0.375,63162,168432:1,3.835,Designated,8/17/2020,9/10/2021,1/17/2023
+Mental Health,MSSA 184-Watsonville,7063011571,Santa Cruz,High Needs Geographic HPSA,Geographic Population,14,20000:1,0,57044,,3.8,Designated,7/22/2021,7/22/2021,1/17/2023
+Mental Health,MSSA 149/Barstow,7063034386,San Bernardino,High Needs Geographic HPSA,Geographic Population,19,20000:1,0.25,52374,209496:1,3.24,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,Calaveras County,7063089120,Calaveras,High Needs Geographic HPSA,Geographic Population,17,20000:1,0.25,45051,180204:1,2.75,Designated,8/6/2021,8/6/2021,1/17/2023
+Mental Health,LI - MSSA 139c/Citrus Heights,7063150334,Sacramento,HPSA Population,Low Income Population HPSA,17,20000:1,0,43771,,2.92,Designated,6/10/2021,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 241a/b-Oxnard South and North,7063210776,Ventura,HPSA Population,Low Income Population HPSA,16,20000:1,0,93063,,6.2,Designated,3/8/2022,3/8/2022,1/17/2023
+Mental Health,Tulare County,7063352046,Tulare,High Needs Geographic HPSA,Geographic Population,16,20000:1,3.75,456186,121650:1,26.66,Designated,8/2/2018,7/28/2021,1/17/2023
+Mental Health,LI - MSSA 78.2ff/Glendale Southeast,7063429582,Los Angeles,HPSA Population,Low Income Population HPSA,18,20000:1,0,38787,,2.59,Designated,3/8/2022,3/8/2022,1/17/2023
+Mental Health,MSSA 148/Lytle Creek/Wrightwood,7063440783,San Bernardino,Geographic HPSA,Geographic Population,9,30000:1,0.125,5829,46632:1,0.165,Designated,8/25/2006,9/10/2021,1/17/2023
+Mental Health,LI-MSSA 78.2m/Bellflower,7063477089,Los Angeles,HPSA Population,Low Income Population HPSA,15,20000:1,0.78,38542,49413:1,1.79,Designated,9/20/2018,9/10/2021,1/17/2023
+Mental Health,MSSA 171/172 - Arroyo Grande/San Luis Obispo,7063481715,San Luis Obispo,High Needs Geographic HPSA,Geographic Population,13,20000:1,6,139460,23243:1,3.3,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,MSSA 58.1/58.2/60 - Shafter/Lost Hills/Wasco,7063505262,Kern,High Needs Geographic HPSA,Geographic Population,17,20000:1,0,107665,,7.18,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,MSSA 78.2mmm/Downtown Southeast,7063526593,Los Angeles,High Needs Geographic HPSA,Geographic Population,20,20000:1,2.05,108949,53146:1,5.21,Designated,11/17/2021,11/17/2021,1/17/2023
+Mental Health,MSSA 78.2ccc-Huntington Park,7063697448,Los Angeles,High Needs Geographic HPSA,Geographic Population,11,20000:1,2.26,105449,46659:1,4.77,Designated,10/14/2016,9/10/2021,1/17/2023
+Mental Health,Lassen County,7063853271,Lassen,High Needs Geographic HPSA,Geographic Population,13,20000:1,0.75,21010,28013:1,0.65,Designated,12/31/2020,9/10/2021,1/17/2023
+Mental Health,Butte County,7063867880,Butte,High Needs Geographic HPSA,Geographic Population,16,20000:1,5.75,220091,38277:1,8.92,Designated,10/4/2016,9/10/2021,1/17/2023
+Mental Health,Merced County,7064071745,Merced,High Needs Geographic HPSA,Geographic Population,18,20000:1,4.225,265217,62773:1,13.455,Designated,10/24/2016,8/25/2021,1/17/2023
+Mental Health,LI - MSSA 78.2bbbb/78.2r/Hawthorne/Inglewood East,7064121986,Los Angeles,HPSA Population,Low Income Population HPSA,18,20000:1,1.0688,61651,57682:1,3.0412,Designated,11/17/2021,11/17/2021,1/17/2023
+Mental Health,MSSA 126 - Blythe,7064157539,Riverside,High Needs Geographic HPSA,Geographic Population,18,20000:1,0,14738,,0.98,Designated,12/27/2012,9/10/2021,1/17/2023
+Mental Health,Modoc County,7064264160,Modoc,High Needs Geographic HPSA,Geographic Population,17,20000:1,0,8603,,0.57,Designated,11/28/2007,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 139j/Del Paso Heights/Downtown,7064290601,Sacramento,HPSA Population,Low Income Population HPSA,19,20000:1,0.7036,71462,101566:1,4.0564,Designated,3/25/2021,9/10/2021,1/17/2023
+Mental Health,MSSA 78.2uuu/Athens/Gardena Northeast,7064373551,Los Angeles,Geographic HPSA,Geographic Population,13,30000:1,2.18,89393,41006:1,2.29,Designated,9/7/2021,9/7/2021,1/17/2023
+Mental Health,MSSA 77.1a/Lancaster/Palmdale,7064408852,Los Angeles,High Needs Geographic HPSA,Geographic Population,18,20000:1,5,371746,74349:1,19.78,Proposed For Withdrawal,7/20/2016,9/10/2021,1/17/2023
+Mental Health,MSSA 104/Big Sur,7064465115,Monterey,High Needs Geographic HPSA,Geographic Population,13,20000:1,0,1957,,0.13,Designated,2/28/2008,9/10/2021,1/17/2023
+Mental Health,MSSA 78.1/Avalon,7064465551,Los Angeles,High Needs Geographic HPSA,Geographic Population,14,20000:1,0,3926,,0.26,Designated,5/4/2018,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 134 Beaumont,7064774324,Riverside,HPSA Population,Low Income Population HPSA,17,20000:1,0.6827,51893,76011:1,2.7773,Designated,7/18/2018,9/10/2021,1/17/2023
+Mental Health,MSSA 78.2ggg/South Central Northeast,7064795607,Los Angeles,High Needs Geographic HPSA,Geographic Population,18,20000:1,1.375,105656,76841:1,5.665,Designated,3/3/2022,3/3/2022,1/17/2023
+Mental Health,LI - MSSA 78.2z/Santa Monica/South Venice,7064808432,Los Angeles,HPSA Population,Low Income Population HPSA,10,20000:1,0.9375,23771,25356:1,0.6425,Proposed For Withdrawal,10/20/2005,9/10/2021,1/17/2023
+Mental Health,LI/MSSA 78.2ooo-Lynwood South/Paramount North,7064906254,Los Angeles,HPSA Population,Low Income Population HPSA,14,20000:1,0.77,37822,49119:1,1.75,Designated,8/2/2018,9/8/2021,1/17/2023
+Mental Health,LI/MFW - San Joaquin County,7064933508,San Joaquin,HPSA Population,Low Income Migrant Farmworker Population HPSA,18,20000:1,2.971,286639,96479:1,16.139,Designated,3/16/2022,3/16/2022,1/17/2023
+Mental Health,MSSAs 145.1a & 145.1b/Hesperia West/Hesperia East,7065163918,San Bernardino,High Needs Geographic HPSA,Geographic Population,16,20000:1,4.5,295737,65719:1,15.22,Proposed For Withdrawal,4/26/2017,9/10/2021,1/17/2023
+Mental Health,MSSA 18f/Richmond Central,7065173707,Contra Costa,Geographic HPSA,Geographic Population,11,30000:1,0.75,103939,138585:1,4.45,Designated,12/10/2021,12/10/2021,1/17/2023
+Mental Health,Kings County,7065176167,Kings,High Needs Geographic HPSA,Geographic Population,20,20000:1,0.75,133044,177392:1,8.12,Proposed For Withdrawal,4/24/2017,9/10/2021,1/17/2023
+Mental Health,LI/MFW-Lake County,7065297125,Lake,HPSA Population,Low Income Migrant Farmworker Population HPSA,19,20000:1,0,26057,,1.74,Designated,12/3/2015,9/10/2021,1/17/2023
+Mental Health,LI-MSSA 129.2 Indio North,7065321015,Riverside,HPSA Population,Low Income Population HPSA,16,20000:1,0,22119,,1.47,Designated,8/12/2013,9/7/2021,1/17/2023
+Mental Health,MSSA 78.2nnn/Crenshaw/Culver City East,7065327544,Los Angeles,High Needs Geographic HPSA,Geographic Population,10,20000:1,3.125,110477,35353:1,4.245,Designated,2/1/2019,9/10/2021,1/17/2023
+Mental Health,MSSA 159 Buckman Springs,7065445759,San Diego,Geographic HPSA,Geographic Population,12,30000:1,0,7666,,0.38,Designated,2/28/2008,8/2/2021,1/17/2023
+Mental Health,MSSA 78.2bbb/78.2iii-Compton East/North Long Beach,7065456611,Los Angeles,High Needs Geographic HPSA,Geographic Population,14,20000:1,2.125,184848,86987:1,10.195,Designated,1/26/2009,9/10/2021,1/17/2023
+Mental Health,MSSA 127/128/130 - Desert Center/Coachella/Idyllwild,7065503603,Riverside,High Needs Geographic HPSA,Geographic Population,17,20000:1,2,115135,57568:1,5.68,Proposed For Withdrawal,2/9/2022,5/12/2022,1/17/2023
+Mental Health,LI-MSSA 78.2ll/San Fernando West,7065524957,Los Angeles,HPSA Population,Low Income Population HPSA,17,20000:1,0.8638,58599,67839:1,3.0462,Designated,11/17/2022,11/17/2022,1/17/2023
+Mental Health,MSSA 237/Santa Paula,7065545521,Ventura,Geographic HPSA,Geographic Population,11,30000:1,0.5,68047,136094:1,2.9,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,LI/MSSA 66a-d/Bakersfield,7065549441,Kern,HPSA Population,Low Income Population HPSA,18,20000:1,1.299,239442,184328:1,14.661,Designated,9/28/2021,9/28/2021,1/17/2023
+Mental Health,MSSA 78.2c/Bell Northeast,7065629373,Los Angeles,High Needs Geographic HPSA,Geographic Population,17,20000:1,2.6,118255,45483:1,5.28,Designated,3/14/2022,3/14/2022,1/17/2023
+Mental Health,LI - MSSA 162a/North Beach/South of Market,7065727020,San Francisco,HPSA Population,Low Income Population HPSA,16,20000:1,0.9163,45270,49405:1,2.1037,Designated,11/27/2020,9/10/2021,1/17/2023
+Mental Health,MSSA 183b/Milpitas,7065794761,Santa Clara,Geographic HPSA,Geographic Population,10,30000:1,0.7,128770,183957:1,5.74,Designated,8/6/2021,8/6/2021,1/17/2023
+Mental Health,MSSA 128 - Arabia/Coachella/Desert Beach/Flowing Wells/Indio,7065870564,Riverside,Geographic HPSA,Geographic Population,15,30000:1,2,101578,50789:1,3.08,Designated,5/12/2022,5/12/2022,1/17/2023
+Mental Health,LI - MSSA 78.2a/Echo Park/Hollywood North Central,7065984890,Los Angeles,HPSA Population,Low Income Population HPSA,17,20000:1,0,26514,,1.77,Designated,3/15/2022,3/15/2022,1/17/2023
+Mental Health,Nevada County,7066034136,Nevada,High Needs Geographic HPSA,Geographic Population,12,20000:1,2.5,98185,39274:1,4.05,Designated,1/3/2008,9/10/2021,1/17/2023
+Mental Health,MSSA 78.2k/South Central Northwest,7066108578,Los Angeles,High Needs Geographic HPSA,Geographic Population,17,20000:1,0,116815,,7.79,Designated,3/8/2022,3/8/2022,1/17/2023
+Mental Health,LI - MSSA 151c/Ontario Northwest,7066130365,San Bernardino,HPSA Population,Low Income Population HPSA,16,20000:1,0,56181,,3.75,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,Glenn County,7066155508,Glenn,Geographic HPSA,Geographic Population,20,30000:1,0,27522,,1.38,Designated,9/16/1986,9/10/2021,1/17/2023
+Mental Health,MSSA 78.2l Exposition Park/Leimert Park,7066155842,Los Angeles,High Needs Geographic HPSA,Geographic Population,12,20000:1,0.75,87353,116471:1,5.07,Designated,8/17/2020,9/10/2021,1/17/2023
+Mental Health,MSSA 119/121.1/Lincoln/Roseville,7066207071,Placer,High Needs Geographic HPSA,Geographic Population,11,20000:1,5.3,214628,40496:1,9.01,Designated,3/8/2022,3/8/2022,1/17/2023
+Mental Health,MSSA 25/26/27/28 - Western Fresno,7066256407,Fresno,High Needs Geographic HPSA,Geographic Population,18,20000:1,0,51551,,3.44,Designated,10/5/1992,8/25/2021,1/17/2023
+Mental Health,LI/MSSA 161k/National City,7066261457,San Diego,HPSA Population,Low Income Population HPSA,17,20000:1,0.28,35006,125021:1,2.05,Designated,9/21/2020,9/10/2021,1/17/2023
+Mental Health,MSSA 150/Baker/Harvard/Newberry Springs,7066314683,San Bernardino,Geographic HPSA,Geographic Population,14,30000:1,0,11742,,0.59,Designated,8/24/2006,9/10/2021,1/17/2023
+Mental Health,MSSA 145.2/Victorville Northwest,7066421770,San Bernardino,Geographic HPSA,Geographic Population,15,30000:1,0,57833,,2.89,Designated,11/20/2012,9/8/2021,1/17/2023
+Mental Health,LI/H/MFW - MSSA 35f/Fresno North Central,7066472696,Fresno,HPSA Population,Low Income Homeless Migrant Farmworker Population HPSA,17,20000:1,0.1225,41678,340229:1,2.6575,Designated,3/8/2022,3/8/2022,1/17/2023
+Mental Health,Yuba County,7066592972,Yuba,High Needs Geographic HPSA,Geographic Population,17,20000:1,0,74761,,4.98,Designated,11/22/2013,7/28/2021,1/17/2023
+Mental Health,MSSA 78.2ddd-Bell Southwest,7066620843,Los Angeles,High Needs Geographic HPSA,Geographic Population,12,20000:1,0,81508,,5.43,Designated,8/17/2020,9/10/2021,1/17/2023
+Mental Health,MSSA 210.1/Santa Rosa,7066666674,Sonoma,High Needs Geographic HPSA,Geographic Population,6,20000:1,9.55,192969,20206:1,3.31,Designated,8/27/2021,8/27/2021,1/17/2023
+Mental Health,LI-MFW/H/MSSA 108/Marina,7066833352,Monterey,HPSA Population,Low Income Homeless Migrant Farmworker Population HPSA,19,20000:1,0,22295,,1.49,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,LI/MSSA 116b-Santa Ana Central,7066898265,Orange,HPSA Population,Low Income Population HPSA,16,20000:1,1.4201,61142,43055:1,2.6599,Designated,11/27/2020,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 132/Hemet,7066956600,Riverside,HPSA Population,Low Income Population HPSA,18,20000:1,0.8,71610,89513:1,3.97,Designated,3/8/2022,3/8/2022,1/17/2023
+Mental Health,LI-MSSA 139k/Meadowview,7066970712,Sacramento,HPSA Population,Low Income Population HPSA,19,20000:1,0,45358,,3.02,Designated,5/26/2020,9/10/2021,1/17/2023
+Mental Health,LI/MSSA 151g/151k-San Bernadino Central and East,7067069258,San Bernardino,HPSA Population,Low Income Population HPSA,18,20000:1,1.5913,138981,87338:1,7.6787,Designated,9/21/2020,9/10/2021,1/17/2023
+Mental Health,MSSA 145.1a/b-Hesperia West/East,7067078342,San Bernardino,Geographic HPSA,Geographic Population,14,30000:1,2.925,307337,105072:1,12.445,Designated,3/3/2022,3/3/2022,1/17/2023
+Mental Health,MSSA 182-Gilroy,7067124888,Santa Clara,Geographic HPSA,Geographic Population,11,30000:1,0.75,121092,161456:1,5.3,Designated,8/24/2021,8/24/2021,1/17/2023
+Mental Health,MSSA 78.2aaa-Watts/Willowbrook,7067133327,Los Angeles,High Needs Geographic HPSA,Geographic Population,7,20000:1,3.875,91898,23716:1,2.255,Designated,5/26/2020,9/10/2021,1/17/2023
+Mental Health,Tuolumne County,7067154992,Tuolumne,High Needs Geographic HPSA,Geographic Population,13,20000:1,1.75,50532,28875:1,1.62,Designated,4/17/2017,8/18/2021,1/17/2023
+Mental Health,MSSA 142/Argus Trona,7067292419,San Bernardino,High Needs Geographic HPSA,Geographic Population,13,20000:1,0,1949,,0.13,Designated,8/21/2006,9/10/2021,1/17/2023
+Mental Health,MSSA 144.2/Morongo Valley,7067350427,San Bernardino,High Needs Geographic HPSA,Geographic Population,18,20000:1,0.625,41578,66525:1,2.145,Designated,7/24/2008,9/9/2021,1/17/2023
+Mental Health,MSSA 78.2d/City Terrace East,7067378960,Los Angeles,High Needs Geographic HPSA,Geographic Population,10,20000:1,3.5,95961,27417:1,2.9,Proposed For Withdrawal,11/5/2010,9/10/2021,1/17/2023
+Mental Health,MSSA 185.1/Santa Cruz,7067401068,Santa Cruz,High Needs Geographic HPSA,Geographic Population,8,20000:1,5.3,114421,21589:1,2.33,Designated,3/3/2022,3/3/2022,1/17/2023
+Mental Health,MSSA 18f/Richmond Central,7067471387,Contra Costa,High Needs Geographic HPSA,Geographic Population,12,20000:1,0.75,102747,136996:1,6.1,Proposed For Withdrawal,1/3/2008,9/10/2021,1/17/2023
+Mental Health,"LI/MFW-MSSA 66a, b, c, d/Bakersfield",7067556693,Kern,HPSA Population,Low Income Migrant Farmworker Population HPSA,19,20000:1,5.18,263950,50956:1,12.42,Proposed For Withdrawal,4/13/2017,9/10/2021,1/17/2023
+Mental Health,El Dorado County,7067611965,El Dorado,High Needs Geographic HPSA,Geographic Population,13,20000:1,3.25,186608,57418:1,9.19,Designated,3/5/2021,9/10/2021,1/17/2023
+Mental Health,Mono County,7067685474,Mono,High Needs Geographic HPSA,Geographic Population,17,20000:1,0,14190,,0.95,Designated,1/13/2022,1/13/2022,1/17/2023
+Mental Health,San Benito County,7067801185,San Benito,High Needs Geographic HPSA,Geographic Population,16,20000:1,1,60052,60052:1,3,Designated,3/3/2022,3/3/2022,1/17/2023
+Mental Health,MSSA 31/32/Sanger/Reedley,7067808956,Fresno,Geographic HPSA,Geographic Population,17,30000:1,0.25,174572,698288:1,8.48,Designated,3/14/2022,3/14/2022,1/17/2023
+Mental Health,MSSAs 178.1/178.2/179/180.2/Buellton/Solvang/Lompoc/Guada,7067822226,Santa Barbara,High Needs Geographic HPSA,Geographic Population,19,20000:1,0.25,86309,345236:1,5.5,Proposed For Withdrawal,4/26/2017,11/8/2021,1/17/2023
+Mental Health,MSSA 77.1a/Lancaster/Palmdale,7067992651,Los Angeles,Geographic HPSA,Geographic Population,12,30000:1,7.175,369847,51547:1,11.315,Designated,11/17/2021,11/17/2021,1/17/2023
+Mental Health,MSSA 78.2fff Firestone/Florence South,7068016727,Los Angeles,High Needs Geographic HPSA,Geographic Population,17,20000:1,1,106237,106237:1,6.08,Designated,6/11/2020,8/4/2021,1/17/2023
+Mental Health,LI-MSSA 161c/Golden Hill/Logan Heights,7068047711,San Diego,HPSA Population,Low Income Population HPSA,18,20000:1,0.7495,40598,54167:1,1.9605,Designated,8/24/2011,9/10/2021,1/17/2023
+Mental Health,MSSA 35b &amp; d Clovis West/Fresno East,7068090536,Fresno,High Needs Geographic HPSA,Geographic Population,13,20000:1,7.25,205760,28381:1,6.47,Designated,12/5/2011,8/27/2021,1/17/2023
+Mental Health,LI - MSSA 78.2d/East Los Angeles,7068124212,Los Angeles,HPSA Population,Low Income Population HPSA,17,20000:1,0.25,45420,181680:1,2.78,Designated,11/17/2021,11/17/2021,1/17/2023
+Mental Health,LI - MSSA 143 and 144.3/Needles/Twentynine Palms,7068188657,San Bernardino,HPSA Population,Low Income Population HPSA,18,20000:1,0,12512,,0.83,Designated,11/15/2012,9/10/2021,1/17/2023
+Mental Health,LI - MFW - MSSA 30/Caruthers/Raisin City,7068205011,Fresno,HPSA Population,Low Income Migrant Farmworker Population HPSA,18,20000:1,0,56928,,3.8,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,LI/MFW - Yolo County,7068242214,Yolo,HPSA Population,Low Income Migrant Farmworker Population HPSA,18,20000:1,0.8,79337,99171:1,4.49,Designated,11/30/2021,11/30/2021,1/17/2023
+Mental Health,Sutter County,7068273317,Sutter,High Needs Geographic HPSA,Geographic Population,17,20000:1,1.6,94914,59321:1,4.73,Designated,5/19/2016,7/22/2021,1/17/2023
+Mental Health,LI - MSSA 133.2/San Jacinto,7068275680,Riverside,HPSA Population,Low Income Population HPSA,14,20000:1,0.375,12166,32443:1,0.435,Designated,3/3/2022,3/3/2022,1/17/2023
+Mental Health,Plumas County,7068392773,Plumas,High Needs Geographic HPSA,Geographic Population,18,20000:1,0,18334,,1.22,Designated,7/10/2019,9/10/2021,1/17/2023
+Mental Health,Imperial County,7068464628,Imperial,High Needs Geographic HPSA,Geographic Population,14,20000:1,5.5,170621,31022:1,5.87,Designated,8/19/1986,9/10/2021,1/17/2023
+Mental Health,MSSA 147/Lake Arrowhead,7068600955,San Bernardino,Geographic HPSA,Geographic Population,13,30000:1,0,19004,,0.95,Designated,3/16/2022,3/16/2022,1/17/2023
+Mental Health,MSSA 57.1/57.2/59-Frazier Park/Taft/Buttonwillow,7068602300,Kern,High Needs Geographic HPSA,Geographic Population,18,20000:1,0,32068,,2.14,Designated,1/19/2012,8/18/2021,1/17/2023
+Mental Health,LI - MSSA 183d/j-Downtown San Jose and Northwest,7068610692,Santa Clara,HPSA Population,Low Income Population HPSA,14,20000:1,0.1,56906,569060:1,3.69,Designated,8/24/2021,8/24/2021,1/17/2023
+Mental Health,MSSA 145.3/Lucerne Valley,7068705665,San Bernardino,Geographic HPSA,Geographic Population,11,30000:1,0,5415,,0.27,Designated,12/27/2012,5/24/2021,1/17/2023
+Mental Health,Trinity County,7068827651,Trinity,High Needs Geographic HPSA,Geographic Population,19,20000:1,0,12463,,0.83,Designated,10/14/1981,9/10/2021,1/17/2023
+Mental Health,MSSA 117/Dollar Point,7068834533,Placer,High Needs Geographic HPSA,Geographic Population,12,20000:1,0,10725,,0.72,Designated,3/30/2017,8/6/2021,1/17/2023
+Mental Health,MSSA 17/Brentwood East,7068847504,Contra Costa,Geographic HPSA,Geographic Population,12,30000:1,0,66051,,3.3,Designated,10/27/2017,9/10/2021,1/17/2023
+Mental Health,Siskiyou County,7068851186,Siskiyou,High Needs Geographic HPSA,Geographic Population,19,20000:1,0.65,43074,66268:1,2.22,Designated,1/5/2022,1/5/2022,1/17/2023
+Mental Health,MSSA 77.4-Acton,7068860509,Los Angeles,High Needs Geographic HPSA,Geographic Population,11,20000:1,0,11760,,0.78,Designated,10/5/2016,8/18/2021,1/17/2023
+Mental Health,LI - MSSA 129.4/Palm Springs/Cathedral City,7068949776,Riverside,HPSA Population,Low Income Population HPSA,18,20000:1,1.01,63387,62759:1,3.22,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,MSSA 78.2jjj-Long Beach West Central,7068973807,Los Angeles,High Needs Geographic HPSA,Geographic Population,11,20000:1,2.13,109987,51637:1,5.2,Designated,3/18/2020,9/10/2021,1/17/2023
+Mental Health,MSSA 78.2h-Boyle Heights Central,7068974588,Los Angeles,High Needs Geographic HPSA,Geographic Population,20,20000:1,0,98327,,6.56,Designated,3/3/2022,3/3/2022,1/17/2023
+Mental Health,Calaveras County,7068979713,Calaveras,Geographic HPSA,Geographic Population,17,30000:1,0,44743,,2.24,Proposed For Withdrawal,11/7/1997,8/6/2021,1/17/2023
+Mental Health,LI-MFW-H/MSSAs 109.1 &amp; 109.2/Prunedale/Salinas,7069027219,Monterey,HPSA Population,Low Income Homeless Migrant Farmworker Population HPSA,8,20000:1,2.6401,79057,29945:1,2.6299,Designated,11/15/2018,9/10/2021,1/17/2023
+Mental Health,LI/MSSA 151h-Fontana Central,7069040479,San Bernardino,HPSA Population,Low Income Population HPSA,17,20000:1,0.435,65291,150094:1,3.915,Designated,10/8/2020,9/10/2021,1/17/2023
+Mental Health,MSSA 18d/Pittsburg,7069187869,Contra Costa,Geographic HPSA,Geographic Population,12,30000:1,0,106307,,5.32,Designated,12/10/2021,12/10/2021,1/17/2023
+Mental Health,Kings County,7069262910,Kings,Geographic HPSA,Geographic Population,17,30000:1,1.125,135855,120760:1,5.665,Designated,10/5/2021,10/5/2021,1/17/2023
+Mental Health,Low Income-MSSAs 171& 172/Arroyo Grande//San Luis,7069300805,San Luis Obispo,HPSA Population,Low Income Population HPSA,11,20000:1,1.82,48354,26568:1,1.4,Proposed For Withdrawal,8/12/2013,9/10/2021,1/17/2023
+Mental Health,MSSA 29/Kerman,7069338165,Fresno,High Needs Geographic HPSA,Geographic Population,18,20000:1,0.375,47329,126211:1,2.785,Designated,8/24/2017,8/27/2021,1/17/2023
+Mental Health,Mariposa County/MSSA 85/86,7069367794,Mariposa,High Needs Geographic HPSA,Geographic Population,19,20000:1,0,17221,,1.15,Designated,10/20/2005,9/10/2021,1/17/2023
+Mental Health,MSSA 131b/Temecula North,7069429222,Riverside,Geographic HPSA,Geographic Population,11,30000:1,1,169481,169481:1,7.47,Designated,3/3/2022,3/3/2022,1/17/2023
+Mental Health,Sierra County,7069448249,Sierra,High Needs Geographic HPSA,Geographic Population,12,20000:1,0,3013,,0.2,Designated,1/3/2008,9/10/2021,1/17/2023
+Mental Health,Madera County,7069600543,Madera,High Needs Geographic HPSA,Geographic Population,18,20000:1,2.125,146837,69100:1,7.665,Designated,3/3/2022,3/3/2022,1/17/2023
+Mental Health,LI - MSSA 2d/2h/Oakland Airport/Hayward Northeast,7069684670,Alameda,HPSA Population,Low Income Population HPSA,16,20000:1,1.402,95432,68068:1,4.958,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,LI - Stanislaus County,7069841393,Stanislaus,HPSA Population,Low Income Population HPSA,17,20000:1,1.2623,204182,161754:1,12.3477,Designated,3/7/2022,3/7/2022,1/17/2023
+Mental Health,MSSA 78.2uuu-Athens/gardena Northeast,7069888968,Los Angeles,High Needs Geographic HPSA,Geographic Population,17,20000:1,1.175,84361,71797:1,4.445,Proposed For Withdrawal,12/31/2018,9/7/2021,1/17/2023
+Mental Health,LI/MSSA 161d/f-Chollas Creek/La Mesa,7069922589,San Diego,HPSA Population,Low Income Population HPSA,17,20000:1,0.725,79249,109309:1,4.555,Designated,11/27/2020,9/10/2021,1/17/2023
+Mental Health,LI - MSSA 161g/Encanto/Lemon Grove Northwest,7069951132,San Diego,HPSA Population,Low Income Population HPSA,15,20000:1,1.1613,45494,39175:1,1.8687,Designated,8/28/2020,9/10/2021,1/17/2023

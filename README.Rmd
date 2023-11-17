@@ -1,0 +1,98 @@
+---
+title: '{rcahelpr}'
+output: github_document
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## ❓ What and Why is This?
+In short, a tool to support the Resident Corrections Analyst program through bespoke functions written in R and data sets for learning purposes. Interested? You can install is using R:
+
+```{r, eval=FALSE}
+remotes::install_github("cllghn/rcahelpr")
+```
+
+
+## 🔎 Examples
+
+### 📚 Codebooks
+
+Codebooks are often to provide a comprehensive guide to the variables and coding schemes in a data set, ensuring consistent and accurate interpretation of data. They serve as a reference tool to facilitate understanding and analysis of complex data structures by researchers and analysts. To support this crucial functionality, we include a codebook function into this package:
+
+```{r}
+# Load the library
+library(rcahelpr)
+
+# Create a test data set
+test <- data.frame(
+  "person" = c("chris", "maeve", "joseph", "brooks"),
+  "org" = c("csg", "wdoc", "ccjbh", "asu"),
+  "years_in_org" = c(1, 0.3, 0.2, NA),
+  "role" = c("mentor", "rca", "rca", "mentor")
+)
+
+# Create codebook
+make_codebook(input_df = test, return_df = FALSE, escape = FALSE)
+```
+
+Should you want to add information to describe the variables described in the codebook, you can do so by left joining and additional data set:
+
+```{r}
+# Set a secondary data.frame describing the variables in your original data set
+more <- data.frame(
+  "vars" = c("person", "org", "years_in_org", "role"),
+  "description" = rep("Interesting details about my variable.", 4),
+  "origin" = rep("Detailed notes on where the data came from.", 4),
+  "notes" = rep("Yet more useful information", 4)
+)
+
+# Create codebook
+make_codebook(input_df = test, return_df = FALSE, escape = FALSE,
+              extra_vars = more, extra_key = "vars")
+```
+
+### 📊 Data
+
+Some key data sets, for learning or general use have been included in the library. Access them using the `::` accessor:
+
+```{r}
+str(rcahelpr::hpsa_primarycare)
+```
+
+This means that we can use these data for a range of purposes, such as pairing them with other libraries and analyzing it:
+
+```{r, fig.height=10}
+# Load the graphing library ggplot2 and data management library dplyr
+library(dplyr)
+library(ggplot2)
+
+# Wrangle some data to identify the average Health Professional Shortage Area 
+# (HPSA) score in a given county:
+demo <- rcahelpr::hpsa_primarycare %>%
+  group_by(County_Equivalent_Name) %>%
+  summarize(mean_hpsa_score = mean(HPSA_Score),
+            total_hpsa_population = sum(HPSA_Designation_Population))
+
+# Make a beautiful graph
+ggplot(data = demo) +
+  geom_point(aes(x = total_hpsa_population , y = County_Equivalent_Name,
+                 color = mean_hpsa_score)) +
+  geom_segment(aes(x = 0 , xend = total_hpsa_population ,
+                   y = County_Equivalent_Name, yend = County_Equivalent_Name,
+                   color = mean_hpsa_score)) +
+  theme_minimal() +
+  labs(title = "Affected Populations in HPSA by County",
+       subtitle = "HPSA scores determine priorities for the assignment of clinitians",
+       caption = "Data from CCHS") +
+  xlab("Total Population in all County HPSAs") +
+  ylab("") +
+  scale_color_gradient2(low="#F5F5DC", mid = "#FFA500", high="#8B0000", 
+                        midpoint = mean(demo$mean_hpsa_score),
+                        name = "Average County HPSA Score")
+
+
+```
+

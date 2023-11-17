@@ -1,0 +1,23 @@
+Package: rcahelpr
+Title: RCA R HelpeR
+Version: 0.0.0.9000
+Authors@R: 
+    person("Christopher", "Callaghan", , "cjcallaghan88@gmail.com",
+    role = c("aut", "cre"))
+Description: A series of functions and datasets used to support the RCA program learn R.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports:
+  kableExtra,
+  tools,
+  stats
+Depends:
+  R (>= 4.2)
+Suggests:
+  knitr,
+  testthat,
+  usethis
+BugReports: https://github.com/cllghn/rcahelpr/issues
+LazyData: true
