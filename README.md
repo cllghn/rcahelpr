@@ -352,6 +352,7 @@ pairing them with other libraries and analyzing it:
 ``` r
 # Load the graphing library ggplot2 and data management library dplyr
 library(dplyr)
+library(forcats)
 library(ggplot2)
 
 # Wrangle some data to identify the average Health Professional Shortage Area 
@@ -363,7 +364,7 @@ demo <- rcahelpr::hpsa_primarycare %>%
 
 # Make a beautiful graph
 ggplot(data = demo) +
-  geom_point(aes(x = total_hpsa_population , y = County_Equivalent_Name,
+  geom_point(aes(x = total_hpsa_population , y = fct_rev(County_Equivalent_Name),
                  color = mean_hpsa_score)) +
   geom_segment(aes(x = 0 , xend = total_hpsa_population ,
                    y = County_Equivalent_Name, yend = County_Equivalent_Name,
