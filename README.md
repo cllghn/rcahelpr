@@ -382,3 +382,390 @@ ggplot(data = demo) +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+Also, the data and functions in this package can be combined:
+
+``` r
+make_codebook(input_df = rcahelpr::hpsa_primarycare, return_df = FALSE, 
+              escape = FALSE)
+```
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable Name
+</th>
+<th style="text-align:left;">
+Data Class
+</th>
+<th style="text-align:left;">
+Valid Values
+</th>
+<th style="text-align:left;">
+Statistics
+</th>
+<th style="text-align:right;">
+Unique Values
+</th>
+<th style="text-align:left;">
+Missing Values
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+HPSA_Discipline_Class
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings: Primary Care.
+</td>
+<td style="text-align:left;">
+1 Unique strings: Primary Care
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Name
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings (n=230): Low Income - MSSA 78.2ddd/Bell
+SW/Cudahy/Maywood/V, MSSA 6/Pioneer, MSSA 78.2uuu/Athens, and more.
+</td>
+<td style="text-align:left;">
+230 unique strings, top three: <br> Colusa County (n=1) <br> LI-MFW-MSSA
+176b/East Palo Alto (n=1) <br> LI-MFW/MSSA 186 Anderson (n=1)
+</td>
+<td style="text-align:right;">
+230
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_ID
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings (n=230): 1061017434, 1061018308, 1061038158, and more.
+</td>
+<td style="text-align:left;">
+230 unique strings, top three: <br> 1061017434 (n=1) <br> 1061018308
+(n=1) <br> 1061038158 (n=1)
+</td>
+<td style="text-align:right;">
+230
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+County_Equivalent_Name
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings (n=52): Los Angeles, Amador, Sacramento, and more.
+</td>
+<td style="text-align:left;">
+52 unique strings, top three: <br> Los Angeles (n=42) <br> San
+Bernardino (n=15) <br> Kern (n=14)
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Designation_Type
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings: HPSA Population, Geographic HPSA, High Needs Geographic
+HPSA.
+</td>
+<td style="text-align:left;">
+3 Unique strings: HPSA Population, Geographic HPSA, High Needs
+Geographic HPSA
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Population_Type
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings (n=6): Low Income Population HPSA, Geographic Population,
+Low Income Migrant Farmworker Population HPSA, and more.
+</td>
+<td style="text-align:left;">
+6 unique strings, top three: <br> Geographic Population (n=125) <br> Low
+Income Population HPSA (n=46) <br> Medicaid Eligible Population HPSA
+(n=31)
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Score
+</td>
+<td style="text-align:left;">
+Integer
+</td>
+<td style="text-align:left;">
+Numeric range from 4 to 20.
+</td>
+<td style="text-align:left;">
+Min: 4 <br> Avg: 13.03 <br> Median: 13 <br> Max: 20 <br> SD: 3.32
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PC_MCTA_Score
+</td>
+<td style="text-align:left;">
+Integer
+</td>
+<td style="text-align:left;">
+Numeric range from 1 to 22.
+</td>
+<td style="text-align:left;">
+Min: 1 <br> Avg: 13.47 <br> Median: 14 <br> Max: 22 <br> SD: 4.7
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+97 (42%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Provider_Ratio_Goal
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings: 3000:1, 3500:1.
+</td>
+<td style="text-align:left;">
+2 Unique strings: 3000:1, 3500:1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_FTE
+</td>
+<td style="text-align:left;">
+Numeric
+</td>
+<td style="text-align:left;">
+Numeric range from 0 to 43.14.
+</td>
+<td style="text-align:left;">
+Min: 0 <br> Avg: 5.71 <br> Median: 2.04 <br> Max: 43.14 <br> SD: 7.93
+</td>
+<td style="text-align:right;">
+162
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Designation_Population
+</td>
+<td style="text-align:left;">
+Integer
+</td>
+<td style="text-align:left;">
+Numeric range from 748 to 173639.
+</td>
+<td style="text-align:left;">
+Min: 748 <br> Avg: 35656.43 <br> Median: 25296 <br> Max: 173639 <br> SD:
+33617.59
+</td>
+<td style="text-align:right;">
+230
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Formal_Ratio
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings (n=173): 331500:1, 58480:1, 22665:1, and more.
+</td>
+<td style="text-align:left;">
+173 unique strings, top three: <br> (n=52) <br> 3553:1 (n=2) <br> 3556:1
+(n=2)
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Shortage
+</td>
+<td style="text-align:left;">
+Numeric
+</td>
+<td style="text-align:left;">
+Numeric range from 0.01 to 30.15.
+</td>
+<td style="text-align:left;">
+Min: 0.01 <br> Avg: 5.86 <br> Median: 3.18 <br> Max: 30.15 <br> SD: 6.6
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Status
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings: Proposed For Withdrawal, Designated.
+</td>
+<td style="text-align:left;">
+2 Unique strings: Proposed For Withdrawal, Designated
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Designation_Date
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings (n=159): 9/12/2011, 7/11/2008, 10/9/2012, and more.
+</td>
+<td style="text-align:left;">
+159 unique strings, top three: <br> 6/22/2022 (n=9) <br> 1/31/2022 (n=6)
+<br> 3/14/2022 (n=6)
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HPSA_Designation_Last_Update_Dat
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings (n=50): 9/10/2021, 5/20/2022, 8/27/2021, and more.
+</td>
+<td style="text-align:left;">
+50 unique strings, top three: <br> 9/10/2021 (n=118) <br> 3/30/2022
+(n=8) <br> 6/22/2022 (n=8)
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Data_Warehouse_Record_Create_Dat
+</td>
+<td style="text-align:left;">
+Character
+</td>
+<td style="text-align:left;">
+Unique strings: 1/17/2023.
+</td>
+<td style="text-align:left;">
+1 Unique strings: 1/17/2023
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 (0%)
+</td>
+</tr>
+</tbody>
+</table>

@@ -98,3 +98,10 @@ ggplot(data = demo) +
 
 ```
 
+Also, the data and functions in this package can be combined:
+
+```{r}
+make_codebook(input_df = rcahelpr::hpsa_primarycare, return_df = FALSE, 
+              escape = FALSE)
+```
+
