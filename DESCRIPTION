@@ -2,8 +2,17 @@ Package: rcahelpr
 Title: RCA R HelpeR
 Version: 0.0.0.9000
 Authors@R: 
-    person("Christopher", "Callaghan", , "cjcallaghan88@gmail.com",
-    role = c("aut", "cre"))
+    c(
+      person(
+        given = "Christopher", 
+        family = "Callaghan", 
+        email = "cjcallaghan88@gmail.com", 
+        role = c("aut", "cre")),
+      person(
+        given = "Mari",
+        family = "Roberts",
+        role = c("aut"),
+        email = "mroberts@csg.org"))
 Description: A series of functions and datasets used to support the RCA program learn R.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -16,8 +25,9 @@ Imports:
 Depends:
   R (>= 4.2)
 Suggests:
-  knitr,
-  testthat,
-  usethis
+    knitr,
+    testthat (>= 3.0.0),
+    usethis
 BugReports: https://github.com/cllghn/rcahelpr/issues
 LazyData: true
+Config/testthat/edition: 3

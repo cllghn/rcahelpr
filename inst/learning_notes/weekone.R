@@ -4,6 +4,9 @@
 # - RStudio Projects
 # - How to get help
 
+
+# R Basics and Workflow
+
 # Basics of working in R at the command line and RStudio goodies ===============
 # - Default panes:
 #   - Console
@@ -78,7 +81,10 @@ rm(x)
 #     - Where does your analysis “live”?
 
 
-# As a beginning R user, it’s OK to consider your workspace “real”. Very soon, I urge you to evolve to the next level, where you consider your saved R scripts as “real”. With the input data and the R code you used, you can reproduce everything.  You can reuse the code to conduct similar analyses in new projects.
+# As a beginning R user, it’s OK to consider your workspace “real”. 
+# Very soon, I urge you to evolve to the next level, where you consider your saved R scripts as “real”. 
+# With the input data and the R code you used, you can reproduce everything.  
+# You can reuse the code to conduct similar analyses in new projects.
 # 
 # Check the backup before closing
 
@@ -87,12 +93,15 @@ q()
 # Restart RStudio. In the Console you will see a line like this:
 # [Workspace loaded from ~/.RData]
 
-# indicating that your workspace has been restored. Look in the Workspace pane and you’ll see the same objects as before. In the History tab of the same pane, you should also see your command history. You’re back in business.
+# indicating that your workspace has been restored. 
+# Look in the Workspace pane and you’ll see the same objects as before. In the History tab of the same pane, you should also see your command history. You’re back in business.
 
 # Remove this option and restart again.
 
 ## Working directory ----------------------------------------------------------------------
- # Any process running on your computer has a notion of its “working directory”. In R, this is where R will look, by default, for files you ask it to load. It also where, by default, any files you write to disk will go.
+ # Any process running on your computer has a notion of its “working directory”. 
+# In R, this is where R will look, by default, for files you ask it to load. 
+# It also where, by default, any files you write to disk will go.
 
 # What is our?
 getwd()
@@ -100,7 +109,8 @@ getwd()
 # What is contained in it?
 list.files()
 
-# As a beginning R user, it’s OK let your home directory or any other weird directory on your computer be R’s working directory. Very soon, I urge you to evolve to the next level, where you organize your analytical projects into separate directories and, when working on project A, set R’s working directory to the associated directory.
+# As a beginning R user, it’s OK let your home directory or any other weird directory on your computer be R’s working directory. 
+# Very soon, I urge you to evolve to the next level, where you organize your analytical projects into separate directories and, when working on project A, set R’s working directory to the associated directory.
 
 setwd()
 
@@ -117,20 +127,29 @@ setwd()
 # 
 # Now check that the “home” directory for your project is the working directory of our current R process:
 
+
+# Check that the “home” directory of your project is the current working directory:
 getwd()
+
+# When ever you refer to a file RStudio will look here...
+
 
 a <- 2
 b <- -3
 sig_sq <- 0.5
 x <- runif(40)
-y <- a + b * x + rnorm(40, sd = sqrt(sig_sq))
+y <- a + (b * x) + rnorm(40)
 avg_x <- mean(x)
 write(avg_x, "avg_x.txt")
 plot(x, y)
 abline(a, b, col = "purple")
 
-# Save it: 
 dev.print(pdf, "toy_line_plot.pdf") #inspect in file
+
+# Uniform distributions are probability distributions with equally likely outcomes. 
+
+# Normal distribution, also known as the Gaussian distribution, is a probability distribution that is symmetric about the mean,
+#   - showing that data near the mean are more frequent in occurrence than data far from the mean.
 
 # Let’s say this is a good start of an analysis and your ready to start preserving the logic and code.
 # 
