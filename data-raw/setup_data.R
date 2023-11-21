@@ -10,4 +10,5 @@ ca_crimes_and_clearances$County <- factor(ca_crimes_and_clearances_with_arson$Co
 # Save
 usethis::use_data(hpsa_mentalhealth)
 usethis::use_data(hpsa_primarycare)
-usethis::use_data(ca_crimes_and_clearances_with_arson)
+usethis::use_data(ca_crimes_and_clearances)
+
