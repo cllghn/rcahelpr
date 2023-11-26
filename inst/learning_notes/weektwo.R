@@ -129,17 +129,52 @@ tail(my_df, 2)
 # Putting Data Frames into Practice --------------------------------------------
 library(rcahelpr)
 
+# Print it
+ca_crimes_and_clearances
+
+# Info
+?ca_crimes_and_clearances
 # 1. What are you?
-class(rcahelpr::ca_crimes_and_clearances_with_arson)
+class(ca_crimes_and_clearances)
 # 2. How much?
-ncol(rcahelpr::ca_crimes_and_clearances_with_arson)
-nrow(rcahelpr::ca_crimes_and_clearances_with_arson)
+ncol(ca_crimes_and_clearances)
+nrow(ca_crimes_and_clearances)
 # 3. What is in it?
 # Compact view
-str(rcahelpr::ca_crimes_and_clearances_with_arson)
+str(ca_crimes_and_clearances)
 # Scan
-head(rcahelpr::ca_crimes_and_clearances_with_arson)
-tail(rcahelpr::ca_crimes_and_clearances_with_arson)
+head(ca_crimes_and_clearances)
+tail(ca_crimes_and_clearances)
+names(ca_crimes_and_clearances)
+# Combine
+View(head(ca_crimes_and_clearances))
+
+
+
+# Higher level data analyis:
+# https://dplyr.tidyverse.org/ && show cheatsheet
+# Intro to dplyr
+library(tidyverse)
+# dplyr is a package for data manipulation, it is built to be fast, highly expressive, and open-minded about how your data is stored
+
+
+# 1. Identify counties where violent sum is larger than 1000 and in 2019
+# 1.1 What is the logic?
+# 1.2 Filter function: filter() takes logical expressions and returns the rows for which all are TRUE
+# 2. Clean up my data to only return certain interesting columns: "Year",  "County", "NCICCode", "Violent_sum"
+# 2.1 Check names
+# 2.2. Select function:  to subset the data on variables or columns. 
+# 3. Combine them using the pipe operator which remove the nesting of functions (example from above)
+ca_crimes_and_clearances %>% # and then
+  head() %>%
+  View()
+# 4. Add a summary
+# 5. Add a graph
+ca_crimes_and_clearances %>% 
+  filter(Violent_sum > 1000 & Year == 2019) %>%
+  select(Year,  County, NCICCode, Violent_sum) %>%
+  ggplot() + geom_bar(aes(x = NCICCode, y = Violent_sum), stat = "identity") + coord_flip()
+
 
 # 1. Subset the data frame to only include year, county, nciccode, violent sum
 # Select columns
