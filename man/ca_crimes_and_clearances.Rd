@@ -15,6 +15,5 @@ ca_crimes_and_clearances
 }
 \description{
 Crimes and Clearances are reported monthly by LEAs throughout the state. The data is reported as part of the Federal Bureau of Investigation's (FBI), Uniform Crime Reporting (UCR) Program and includes the number of actual offenses as well as the number of clearances as per the UCR guidelines. Supplemental data are also collected on the nature of some of the crime types and the value of property stolen and recovered. The information is used to provide statistical data on the offenses of: criminal homicide, rape, robbery, aggravated assault, burglary, larceny-theft, motor vehicle theft, and arson.
-A codebook can be found at the following URL: https://data-openjustice.doj.ca.gov/sites/default/files/dataset/2023-06/Crimes-Clear-Arson\%20Context_06292023.pdf
 }
 \keyword{datasets}
