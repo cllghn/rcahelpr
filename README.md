@@ -31,7 +31,8 @@ test <- data.frame(
   "person" = c("chris", "maeve", "joseph", "brooks"),
   "org" = c("csg", "wdoc", "ccjbh", "asu"),
   "years_in_org" = c(1, 0.3, 0.2, NA),
-  "role" = as.factor(c("mentor", "rca", "rca", "mentor"))
+  "role" = as.factor(c("mentor", "rca", "rca", "mentor")),
+  "date" = as.Date(c("2020-01-01", "2020-01-01", NA, "2020-01-02"))
 )
 
 # Create codebook
@@ -144,6 +145,27 @@ Categorical variable with 2 levels: mentor, rca
 0 (0%)
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+date
+</td>
+<td style="text-align:left;">
+Date
+</td>
+<td style="text-align:left;">
+Date rage from 2020-01-01 to 2020-01-02.
+</td>
+<td style="text-align:left;">
+Min: 2020-01-01 <br> Mode: 2020-01-01 <br> Max: 2020-01-02 <br> Time
+difference: 1 days
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+1 (25%)
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -197,6 +219,36 @@ Notes
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+date
+</td>
+<td style="text-align:left;">
+Date
+</td>
+<td style="text-align:left;">
+Date rage from 2020-01-01 to 2020-01-02.
+</td>
+<td style="text-align:left;">
+Min: 2020-01-01 <br> Mode: 2020-01-01 <br> Max: 2020-01-02 <br> Time
+difference: 1 days
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+1 (25%)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 org

@@ -31,7 +31,8 @@ test <- data.frame(
   "person" = c("chris", "maeve", "joseph", "brooks"),
   "org" = c("csg", "wdoc", "ccjbh", "asu"),
   "years_in_org" = c(1, 0.3, 0.2, NA),
-  "role" = as.factor(c("mentor", "rca", "rca", "mentor"))
+  "role" = as.factor(c("mentor", "rca", "rca", "mentor")),
+  "date" = as.Date(c("2020-01-01", "2020-01-01", NA, "2020-01-02"))
 )
 
 # Create codebook

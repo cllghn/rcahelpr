@@ -144,7 +144,7 @@ write(avg_x, "avg_x.txt")
 plot(x, y)
 abline(a, b, col = "purple")
 
-dev.print(pdf, "toy_line_plot.pdf") #inspect in file
+dev.print(pdf, "toy_line_plot.pdf")d #inspect in file
 
 # Uniform distributions are probability distributions with equally likely outcomes. 
 
