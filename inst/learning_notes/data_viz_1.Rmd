@@ -1,0 +1,34 @@
+---
+title: "Data Visualization I"
+output: html_document
+date: "2023-12-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+all_data <- rcahelpr::saipe_state_and_county %>%
+  filter(`County FIPS Code` != "000") 
+
+ca_data <- rcahelpr::saipe_state_and_county %>%
+  filter(`County FIPS Code` != "000" & `Postal Code` == "CA") 
+
+ggplot() + 
+  geom_point(data = all_data, aes(y = `Poverty Percent, Age 0-17`, x = `Median Household Income`), alpha = 0.5, size = 2, color = 'grey') +
+  geom_point(data = ca_data,  aes(y = `Poverty Percent, Age 0-17`, x = `Median Household Income`), alpha = 0.75, size = 2, color = 'black') +
+  theme_minimal() +
+  labs(title = element_text("County Poverty Percent for Children and Median Household Income"),
+       subtitle = "Values of for CA counties and all other states", 
+       caption = "US Census, SAIPE State and County Estimates for 2021")
+  
+```
+```{r}
+ca_data[ca_data$`Median Household Income`> 80000 & ca_data$`Poverty Percent, Age 0-17` > 20, c("Name", "Median Household Income", "Poverty Percent, Age 0-17")] 
+  
+```
+

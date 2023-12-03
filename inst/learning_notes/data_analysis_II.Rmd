@@ -1,0 +1,156 @@
+---
+title: "Data Analysis II"
+output: html_document
+date: "2023-11-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+What is it?
+[R Markdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) is a flexible type of document that allows you to seamlessly combine executable R code, and its output, with text in a single document. These documents can be readily converted to multiple static and dynamic output formats, including PDF (.pdf), Word (.docx), and HTML (.html).
+
+Why use it?
+The benefit of a well-prepared R Markdown document is full reproducibility. This also means that, if you notice a data transcription error, or you are able to add more data to your analysis, you will be able to recompile the report without making any changes in the actual document.
+
+How do I get it?
+The rmarkdown package comes pre-installed with RStudio, so no action is necessary.
+Should you be unable to find it, you may need to install it:
+
+```{r, eval = FALSE}
+install.packages("rmarkdown")
+```
+
+You can open a new .Rmd file in the RStudio IDE by going to File > New File > R Markdown…
+
+(cut video)
+
+### Markdown Basics
+
+Markdown is a simple formatting language designed to make authoring content easy for everyone. Rather than write in complex markup code (e.g. HTML or LaTex), you write in plain text with formatting cues. These cues are turned into an attractive output. For example, knit the sample document. (save in inst/ as "sample_markdown.Rmd")
+
+(knit > delete all content exept for YAML and top chunk set)
+
+### Basic components of R Markdown 
+
+#### YAML Header
+
+To control the output, a YAML (YAML Ain’t Markup Language) header is needed (see you example).
+
+The header is defined by the three hyphens at the beginning (---) and the three hyphens at the end (---).
+
+In the YAML, the only required field is the output:, which specifies the type of output you want. This can be an html_document, a pdf_document, or a word_document. We will start with an HTML document and discuss the other options later.
+
+#### Markdown Syntax
+
+Markdown is a popular markup language that allows you to add formatting elements to text, such as **bold**, *italics*, and `code`. The formatting will not be immediately visible in a markdown (.md) document, like you would see in a Word document. Rather, you add Markdown syntax to the text, which can then be converted to various other files that can translate the Markdown syntax. 
+
+First, let’s create a heading! A # in front of text indicates to Markdown that this text is a heading. (this is different than an R script) Adding more #s make the heading smaller, i.e. one # is a first level heading, two ##s is a second level heading, etc. up to the 6th level heading. (knit)
+
+```{r, eval = FALSE}
+# Title
+## Section
+### Sub-section
+#### Sub-sub section
+##### Sub-sub-sub section
+###### Sub-sub-sub-sub section
+```
+
+You can make things bold by surrounding the word with double asterisks, **bold**, or double underscores, __bold__; and italicize using single asterisks, *italics*, or single underscores, _italics_. (knit)
+
+To create r code chunks, ctrl + alt + i
+
+```{r}
+print("hello world!")
+```
+
+(knit)
+
+Comments can still be included inside chunks
+
+```{r}
+# This is a basic print
+print("hello world!")
+```
+
+(knit)
+
+You can control the code chunks to not run:
+
+```{r eval = FALSE}
+print("hello world!")
+```
+
+(knit)
+
+Run quietly:
+
+```{r echo = FALSE}
+print("hello world!")
+```
+
+(knit)
+
+By default, when you open a new R Markdown document there is a function call that sets the parameters for all your code chunks. You can modify that to make global changes or set how each chunk operates at a local level.
+
+Then we can create a list for the variables using -, +, or * keys.
+
+- bullet
+- second bullet
+- third bullet
+
+(knit)
+
+Plots can also be included and we will include nice plots later:
+
+```{r}
+plot(pressure)
+```
+
+Change the output using `fig.align`, which can be `default`, `left`, `center`, or `right`.
+
+(knit)
+
+Because each document knits separate from your R environment, you have to include all libraries, data, and variables in your document in the right order. For example:
+
+```{r, eval=FALSE}
+my_variable
+```
+
+```{r, eval = FALSE}
+my_variable <- 100
+```
+
+(knit which will error)
+
+### Why we will use Markdown? 
+- Reproducible (need to include all components)
+- Easier to write notes! (show comment in chunks)
+
+(cut video)
+
+## {readr}
+
+### Storing notes and 101
+
+Create a blank R Markdown for the rest of the tutorial. Save it in `inst` as "data_analysis_2.Rmd." Start new section `## {reader}`, then subsection `### What is it?` and proceed to open the official vignette and copy a definition from [here](https://readr.tidyverse.org/). 
+
+Walk through vignette. 
+
+In next video we are putting it to use. 
+
+(cut video)
+
+### Reading from GitHub
+
+- New chunk
+- library(tidyverse)
+- Reader and URL into object temp
+- Explore with class, nrow, ncol, summarize, names
+- Write to /data as "life_expect.csv"
+- Read back in as "life_expectancy" from /data
+- Comment out the download... now it is stored as a local function
+- (knit)
