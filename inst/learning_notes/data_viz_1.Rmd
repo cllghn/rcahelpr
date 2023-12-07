@@ -5,30 +5,817 @@ date: "2023-12-02"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
+
+## An Introduction to **{ggplot2}**
+
+Being able to create graphical representations of data is key to being able to communication information and findings to others. Visualizing data is not just key to communicating information to others, in fact, it is a key aspect of exploratory data analysis. For most of us, graphics make it easier to identify patterns, trends, and outliers in data (big or small).
+
+In this module, we will learn to use **{ggplot2}** a library from the **{tidyverse}** that allows us to declaratively make beautiful plots or charts from data. While R does provide built-in plotting functions out of the box, **{ggplot2}** is particularly effective at allowing users to make nearly any kind of static data visualizations and customize these to their exact expectations. 
+
+See: https://ggplot2.tidyverse.org/
+
+Before we move forward, let's take a look at a finalized graph created using **{ggplot2}**:
 
 ```{r}
 library(dplyr)
 library(ggplot2)
 
-all_data <- rcahelpr::saipe_state_and_county %>%
-  filter(`County FIPS Code` != "000") 
+all_counties <- rcahelpr::saipe_state_and_county %>%
+  # Notice that the state and nation `County FIPS Code` is "000"
+  filter(`County FIPS Code` != "000") %>%
+  # Select and rename:
+  select(name = Name,
+         postal = `Postal Code`,
+         poverty_percent_0_17 = `Poverty Percent, Age 0-17`,
+         median_household_income = `Median Household Income`) %>%
+  # If observation is CA then return a TRUE for all values
+  mutate(is_ca = if_else(postal == "CA", "California", "Other State"))
 
-ca_data <- rcahelpr::saipe_state_and_county %>%
-  filter(`County FIPS Code` != "000" & `Postal Code` == "CA") 
-
-ggplot() + 
-  geom_point(data = all_data, aes(y = `Poverty Percent, Age 0-17`, x = `Median Household Income`), alpha = 0.5, size = 2, color = 'grey') +
-  geom_point(data = ca_data,  aes(y = `Poverty Percent, Age 0-17`, x = `Median Household Income`), alpha = 0.75, size = 2, color = 'black') +
-  theme_minimal() +
-  labs(title = element_text("County Poverty Percent for Children and Median Household Income"),
+ggplot(data = all_counties, 
+             aes(y = poverty_percent_0_17,
+                 x = median_household_income,
+                 color = is_ca)) + 
+  geom_point(alpha = 0.5, size = 1.5) +
+  geom_smooth(color = "#4daf4a") +
+  labs(title = element_text("CA County Poverty Percent for Children and Median Household Income"),
        subtitle = "Values of for CA counties and all other states", 
-       caption = "US Census, SAIPE State and County Estimates for 2021")
-  
-```
-```{r}
-ca_data[ca_data$`Median Household Income`> 80000 & ca_data$`Poverty Percent, Age 0-17` > 20, c("Name", "Median Household Income", "Poverty Percent, Age 0-17")] 
+       caption = "Source: US Census, SAIPE State and County Estimates for 2021",
+       color = "Location of Counties",
+       x = "County Median Household Income",
+       y = "County Poverty Percent, Ages 0 to 17") +
+  scale_color_brewer(palette = "Set1", type = "qual") +
+  scale_x_continuous(labels = scales::comma) + 
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  theme_minimal()
   
 ```
 
+What do we have here?
+
+- Each point represents a county (nationwide) where the median household income for the county is mapped to the x position and the poverty percent for ages 0-17 is mapped to the y position.
+- The line represents the dominant pattern for nationwide data.
+- Some dots represent California counties where the median household income for the county is mapped to the x position and the poverty percent for ages 0-17 is mapped to the y position.
+
+Here we will walk through how to set up something this complex.
+
+## Start with data + a quick review of **{dplyr}**
+
+For this exercise we will use data from the **{rcahelpr}** package, which needs to be re-installed as the data was updated and your local version may be outdated:
+
+```{r, eval = FALSE}
+remotes::install_github("cllghn/rcahelpr", force = TRUE)
+```
+
+The particular data set that we will use is called `saipe_state_and_county` within the package and it includes information about estimates of poverty and income at the County and State level for 2021. It was obtained from the US Census and manipulated to trim down the number of variables in the data. You can access the data by loading the **{rcahelpr}** library:
+
+```{r}
+library(rcahelpr)
+head(saipe_state_and_county)
+```
+
+The variables are mostly self-explanatory, but some can use some clarification:
+
+- `State FIPS Code` and `County FIPS Code` are numbers which uniquely identify geographic areas. 
+- `Postal Code` is a two-letter Postal State abbreviation. 
+- `Name` represents the state or county name.
+- `Poverty Estimate, All Ages`: Estimate of people of all ages in poverty
+- `Poverty Percent, All Ages`: Estimated percent of people of all ages in poverty
+- `Poverty Estimate, Age 0-17`:  Estimate of people age 0-17 in poverty
+- `Poverty Percent, Age 0-17`: Estimated percent of people age 0-17 in poverty
+- `Poverty Estimate, Age 5-17 in Families`: Estimate of related children age 5-17 in families in poverty
+- `Poverty Percent, Age 5-17 in Families`:  Estimated percent of related children age 5-17 in families in poverty
+- `Median Household Income`: Estimate of median household income
+
+As you can see, we can do many things with the data. Our goal is to answer: How is the median household income related to the the poverty percent for people age 0-18 in poverty? How is the median household income related to the the poverty percent for people age 0-18 in poverty in California? We will try to answer some of these questions and in the process learn how to create some basic plots in **{ggplot2}**.
+
+However, before we get started, we need to trim our data to make it more manageable and reshape it a little. For example:
+
+- The data contains observations for states and the country, we are only interested in counties.
+- The variable names are not named using snakecase and the spacing makes it harder to work with.
+- Add a logical variable specifying if an observation corresponds to CA or not.
+
+Lucky for us, we are **{dplyr}** geniuses and know how to leverage the `filter()` function to subset our rows (observations) based on specific parameters. In addition, we can use the `select()` function not only to downsize the number of variables we are working with, but also rename them into something easier to work with. Finally, using the `mutate()` function, we can add a new variable to denote which observations correspond to CA.
+
+First inspect your data:
+
+```{r}
+head(saipe_state_and_county)
+# Notice that the state and nation `County FIPS Code` is "000"
+# Notice that we will only use a couple of vars: name, postal code, poverty estimate (0-17), and median household income. We only use the name and postal code to avoid having to refer to the a FIPS code dictionary.
+# Notice the CA Postal Code
+```
+
+Now reshape the data:
+
+```{r}
+all_counties <- saipe_state_and_county %>%
+  # Notice that the state and nation `County FIPS Code` is "000"
+  filter(`County FIPS Code` != "000") %>%
+  # Select and rename:
+  select(name = Name,
+         postal = `Postal Code`,
+         poverty_percent_0_17 = `Poverty Percent, Age 0-17`,
+         median_household_income = `Median Household Income`) %>%
+  # If observation is CA then return a TRUE for all values
+  mutate(is_ca = if_else(postal == "CA", "California", "Other State"))
+```
+
+Take a look:
+
+```{r, eval=FALSE}
+str(all_counties)
+nrow(all_counties)
+head(all_counties)
+names(all_counties)
+```
+
+
+## Hello **{ggplot2}**
+
+Begin by loading the library:
+
+```{r}
+library(ggplot2)
+```
+
+The core function in a **{ggplot2}** plot is the the `ggplot()` function. It initializes a ggplot object, you can think of it as a blank canvas. 
+
+```{r}
+ggplot()
+```
+
+**{ggplot2}** plots depend on the Grammar of Graphics, which is a construct that allows us to construct meaningful graphical figures out of different visual elements, much like the grammar of language helps up construct meaningful sentences out of words. The grammar of graphics is intended to give us a way to talk about parts of a plot: all the circles, lines, arrows, and words that are combined into a diagram for visualizing data. Keep in mind the following components of a plot:
+
+- the *data* being plotted
+- a set of mappings from variables in the data to the *aesthetics* (appearance) of the geometric objects
+- the *geometric objects* (circles, lines, etc.) that appear on the plot
+- a set of mappings from variables in the data to the *aesthetics* of the geometric objects
+- a *scale* (e.g., range of values) for each aesthetic mapping used
+
+These components are further organized into layers, where each layer has a single geometric object, statistical information, and position adjustment. Following this grammar, you can think of each plot as a set of layers of images, where each image’s appearance is based on some aspect of the data set.
+
+Let's put that into practice:
+
+```{r}
+# Creat a blank canvas with data, but no aesthetics
+ggplot(data = all_counties)
+```
+
+```{r}
+# Canvas + variables mapped to axes, but no shapes
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17))
+```
+
+```{r}
+# Canvas + variables mapped to axes + shapes
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17)) +
+  geom_point()
+```
+
+Note that when you added the geom layer you used the addition (`+`) operator. As you add new layers you will always use `+` to add onto your visualization.
+
+To recap, every **{ggplot2}** plot has three components:
+1. **data**
+2. A set of **aesthetic mappings** between variables in the data and visual properties, and
+3. At least one layer which describes how to render each observation. Layers are usually created with a **geom** function.
+4. The scale is automatically set by the **geom** function to match the type of data (e.g., categorical or cont.)
+
+What does the visualization tell us that we did not know? The plot shows a correlation: as the median household income increases, the percent of people ages 0-17 in the county in poverty decreases.
+
+## Color, size, shape and other aesthetic attributes
+
+The aesthetic mappings take properties of the data and use them to influence visual characteristics, such as position, color, size, shape, or transparency. Each visual characteristic can encode an aspect of the data and be used to convey information.
+
+All aesthetics for a plot are specified in the `aes()` function call. For example, we can add a mapping from variable denoting CA observations to the color characteristic:
+
+```{r}
+# Canvas + variables mapped to axes + shapes + color
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point()
+```
+
+Note that using the `aes()` function will cause the visual channel to be based on the data specified in the argument. For example, using `aes(color = "blue")` won’t cause the geometry’s color to be “blue”, but will instead cause the visual channel to be mapped from the vector `c("blue")`.
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = "blue")) +
+  geom_point()
+```
+
+
+If you wish to apply an aesthetic property to an entire geometry, you can set that property as an argument to the `geom` method, outside of the `aes()` call:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17)) +
+  geom_point(color = "blue")
+```
+
+You can use the alpha argument within the `geom_point()` function in ggplot2 to modify the transparency of the points in a plot. The value for alpha can range between 0 and 1 where: 0 is completely transparent. 1 is completely solid.
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17)) +
+  geom_point(color = "blue", alpha = 0.25) #change it
+```
+
+## Specifying Geometric Shapes
+
+Building on these basics, **{ggplot2}** can be used to build almost any kind of plot you may want. These plots are declared using functions that follow from the Grammar of Graphics. 
+
+You might guess that by substituting `geom_point()` for a different geom function, you’d get a different type of plot. That’s a great guess!
+
+Let's check out some geoms:
+
+### geom_smooth()
+
+This function  fits a smoother to the data and displays the smooth and its standard error. For example, replace the `geom_points()` for `geom_smoot()`:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17)) + 
+  geom_smooth()
+```
+Because the aesthetic mapping is the same that we used with our points, we can actually use them together:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17)) + 
+  geom_smooth() +
+  geom_point()
+```
+
+Notice that the order of the layers matters, here the points are above the smooth line, which makes it hard to read. Change that:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17)) + 
+  geom_point() +
+  geom_smooth() 
+```
+
+Much better, but we can clean up the graph a bit adding arguments to the geoms:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17)) + 
+  geom_point(alpha = 0.25, color = "grey") +
+  geom_smooth() 
+```
+
+Much better!
+
+Keep in mind when layering geoms that the location of your aes declaration matters. For example, look at what happens when we add color to the `ggplot()` function call aesthetic:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) + 
+  geom_point(alpha = 0.25) + #remove the grey color
+  geom_smooth() 
+```
+
+We get two lines as the smooth line was calculated for each mapping of the data. We can fix that by declaring the aesthetics not in the `ggplot()` function, but rather in each geom:
+
+```{r}
+ggplot(data = all_counties) + 
+  geom_point(alpha = 0.25,
+             aes(x = median_household_income, 
+                 y = poverty_percent_0_17,
+                 color = is_ca)) +
+  geom_smooth(aes(x = median_household_income, 
+                 y = poverty_percent_0_17)) 
+```
+
+The resulting graph contains the categorical values for the dots, but by selectively deciding which geom should include those data, we cleaned up the graph.
+
+### geom_boxplot() and geom_violin()
+
+Produces a box-and-whisker plot to summarise the distribution of a set of points. To make sense of this function let's take a quick step back. When a set of data includes a categorical variable and one or more continuous variables, you will probably be interested to know how the values of the continuous variables vary with the levels of the categorical variable.
+
+Say which states have higher percents of poverty for populations 0-17. We might start with a scatterplot like this:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = postal, 
+           y = poverty_percent_0_17)) + 
+  geom_point() 
+```
+
+This is hard to see, so let's only focus on west coast states to demonstrate a point. To do so, let's filter down our data a bit more:
+
+```{r}
+best_coast_counties <- all_counties %>%
+  # The %in% operator in R is used to check if a value is present in a vector or a list of values
+  filter(postal %in% c("CA", "OR", "WA"))
+```
+
+Now try the prior visualization once again:
+
+```{r}
+ggplot(data = best_coast_counties, 
+       aes(x = postal, 
+           y = poverty_percent_0_17)) + 
+  geom_point()
+```
+Because there are few unique values of both `postal` and `poverty_percent_0_17`, there is a lot of overplotting. Many points are plotted in the same location, and it’s difficult to see the distribution. There are three useful techniques that help alleviate the problem.
+
+First, let look at boxplots using the `geom_boxplot()` function, which summarise the shape of the distribution with a handful of summary statistics. 
+
+```{r}
+ggplot(data = best_coast_counties, 
+       aes(x = postal, 
+           y = poverty_percent_0_17)) + 
+  geom_boxplot()
+```
+
+So what are we looking at? The function visualizes five summary statistics (the median, two hinges and two whiskers), and all "outlying" points individually. The hinges help us see the spread and skewness of the numerical data. The whiskers extend that extend past the  box indicate the variability outside the upper and lower quartiles.
+
+Another approach to visualizing the distribution for categorical data is using the `geom_violin()` function:
+
+```{r}
+ggplot(data = best_coast_counties, 
+       aes(x = postal, 
+           y = poverty_percent_0_17)) + 
+  geom_violin()
+```
+This function shows a compact representation of the "density" of the distribution, highlighting areas where more points are found.
+
+Each method has its strengths and weaknesses. Boxplots summarise the bulk of the distribution with only five numbers, while jittered plots show every point but only work with relatively small datasets. Violin plots give the richest display, but rely on the calculation of a density estimate, which can be hard to interpret.
+
+### Histograms and frequency polygons
+
+Histograms and frequency polygons show the distribution of a single numeric variable. They provide more information about the distribution of a single group than boxplots do, at the expense of needing more space. 
+
+Take a look at a histogram:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(poverty_percent_0_17))  +
+  geom_histogram()
+```
+
+Take a look at a frequency polygon:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(poverty_percent_0_17))  +
+  geom_freqpoly()
+```
+
+
+Both histograms and frequency polygons work in the same way: they bin the data, then count the number of observations in each bin. The only difference is the display: histograms use bars and frequency polygons use lines.
+
+You can control the width of the bins with the `binwidth` argument . It is very important to experiment with the bin width. The default just splits your data into 30 bins, which is unlikely to be the best choice. You should always try many bin widths, and you may find you need multiple bin widths to tell the full story of your data.
+
+```{r}
+ggplot(data = all_counties, 
+       aes(poverty_percent_0_17))  +
+  geom_histogram(binwidth = 1) #each bin covers a percent increase
+```
+
+### Bar Charts 
+
+The discrete analogue of the histogram is the bar chart, `geom_bar()`. It’s easy to use: 
+
+```{r}
+ggplot(data = all_counties, 
+       aes(postal))  +
+  geom_bar()
+```
+
+Again, a bit crowded, lets use the smaller west coast data:
+
+```{r}
+ggplot(data = best_coast_counties, 
+       aes(postal))  +
+  geom_bar()
+```
+
+Bar charts can be confusing because there are two rather different plots that are both commonly called bar charts. The above form expects you to have unsummarised data, and each observation contributes one unit to the height of each bar. So the height is the number of counties in each state.
+
+The other form of bar chart is used for presummarised data. For example:
+
+```{r}
+drugs <- data.frame(
+  drug = c("a", "b", "c"),
+  effect = c(4.2, 9.7, 6.1)
+)
+```
+
+To display this sort of data, you need to tell `geom_bar()` to not run the default stat which bins and counts the data.
+
+```{r}
+ggplot(drugs, aes(drug, effect)) + 
+  geom_bar(stat = "identity")
+```
+
+In this example, the height is the effect value, not the number of observations.
+
+## Labels & Annotations
+
+Textual labels and annotations (on the plot, axes, geometry, and legend) are an important part of making a plot understandable and communicating information. **{ggplot}** makes it very easy to add such annotations.
+
+You can add titles and subtitles to a chart using the `labs()` function:
+
+```{r}
+# Go back to our basic plot chart
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() +
+  labs(
+    title = "Poverty Percent for 0 to 17 Year Olds by Median Household Income",
+    subtitle = "Poverty data for 2021 at the County level"
+  )
+```
+
+The x and y axis labels can also be modified somewhat easily:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17)) +
+  geom_point() +
+  labs(
+    title = "Poverty Percent for 0 to 17 Year Olds by Median Household Income",
+    subtitle = "Poverty data for 2021 at the County level",
+    y = "County Poverty Percent, 0 to 17",
+    x = "Median Household Income"
+  )
+```
+
+The legend title can also be changes within the `labs()` function:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() +
+  labs(
+    title = "Poverty Percent for 0 to 17 Year Olds by Median Household Income",
+    subtitle = "Poverty data for 2021 at the County level",
+    y = "County Poverty Percent, 0 to 17",
+    x = "Median Household Income", 
+    color = "County Location"
+  )
+```
+
+
+Lastly, it is good practice to provide your data source, we will put it in the caption:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() +
+  labs(
+    title = "Poverty Percent for 0 to 17 Year Olds by Median Household Income",
+    subtitle = "Poverty data for 2021 at the County level",
+    y = "County Poverty Percent, 0 to 17",
+    x = "Median Household Income",
+    color = "County Location",
+    caption =  "Source: US Census, SAIPE State and County Estimates for 2021")
+```
+
+That is much nicer to look at and easier for those engaging with the graph to understand what they are looking at. 
+
+## Managing Scales
+
+When we specify the aesthetic mapping, **{ggplot}** uses a scale to determine the range of values based on the data class. For example:
+
+```{r}
+# We get a continuous scale to handle numeric data
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point()
+```
+
+Or:
+
+```{r}
+# We get a continuous scale to handle numeric data on the y axis
+# We get a categorical scale to handle distinct postal codes on the x axis
+ggplot(data = all_counties, 
+       aes(x = postal)) +
+  geom_bar()
+```
+
+While **{ggplot}** automatically adds a scale for each mapping to the plot, we can represent those same scales through functions, names `scale_`, followed by the name of the aesthetic property, followed again by another `_` and the name of the scale. For example, the `continuous` scale on the `x` and `y` axis that contain numeric data on the scatterplot can be denoted as such:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous() +
+  scale_y_continuous()
+```
+
+Similarly, the `discrete` scale used for the color can be access like so:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous() +
+  scale_y_continuous() +
+  scale_color_discrete()
+```
+
+Why do I show you this? Well, while the default scales will work fine, we can replace the defaults to fine tune our graph. For example, you can change the direction of an axis:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_reverse() +
+  scale_y_continuous() +
+  scale_color_discrete()
+```
+
+This makes your graph rather hard to read. Often, all you may really want to do is change the format of the default axes. For example, look at the documentation for `?scale_y_continuous` and notice that you can set the limits. In the default, these are going from 0 to 60ish. Let's change that to 0 t0 100 percent.
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous() +
+  scale_y_continuous(limits = c(0, 100)) +
+  scale_color_discrete()
+```
+
+Similarly, we can change the breaks. Let's do so for the x axis, by providing it a numeric vector that includes breaks every 20k:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous(breaks = c(20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000)) +
+  scale_y_continuous(limits = c(0, 100)) +
+  scale_color_discrete()
+```
+
+Notice that you can change the format of your labels, to do so you can use the **{scales}** library to clean things up a little. For example, adding commas (try `scales::comma(100000000)`) to the x axis:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous(breaks = c(20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000),
+                     labels = scales::comma) +
+  scale_y_continuous(limits = c(0, 100)) +
+  scale_color_discrete()
+```
+
+This makes our x axis easier to read, but we aren't done setting our scales. The y axis is a percent and we may want to represent that by adding a `%` sign. Once again, use the **{scales}** library and the `percent()` function:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous(breaks = c(20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000),
+                     labels = scales::comma) +
+  scale_y_continuous(limits = c(0, 100),
+                     labels = scales::percent) +
+  scale_color_discrete()
+```
+
+Seems like the `percent()` funtion by defauls expect fractions of a number. Let's adjust for our values:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous(breaks = c(20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000),
+                     labels = scales::comma) +
+  scale_y_continuous(limits = c(0, 100),
+                     labels = scales::percent_format(scale = 1)) + #?scales::percent_format
+  scale_color_discrete()
+```
+
+Commonly, color changes are requested. While you can use the default coloring, a more common option is to leverage the pre-defined palettes from [colorbrewer.org](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3). These color sets have been carefully designed to look good and to be viewable to people with certain forms of color blindness. We can leverage color brewer palletes by specifying the `scale_color_brewer()` function, passing the pallete as an argument.
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous(breaks = c(20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000),
+                     labels = scales::comma) +
+  scale_y_continuous(limits = c(0, 100),
+                     labels = scales::percent_format(scale = 1)) +
+  scale_color_brewer()
+```
+
+Note that you can get the palette name from the colorbrewer website by looking at the scheme query parameter in the URL. Alternatively, read the documentation! For example:
+
+```{r}
+ggplot(data = all_counties, 
+       aes(x = median_household_income, 
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point() + 
+  scale_x_continuous(breaks = c(20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000),
+                     labels = scales::comma) +
+  scale_y_continuous(limits = c(0, 100),
+                     labels = scales::percent_format(scale = 1)) + scale_color_brewer(palette = "Set1", type = "qual")
+```
+
+
+## Bringing it all together
+
+So let's bring it all together and take stock of how far we've come. Upon entering this sequence, we knew how to manipulate a data frame and calculate some basic statistics. We can now do that, plus create some good looking visuals to communicate the data to an audience.
+
+Let's break the steps down:
+
+```{r}
+# First, we loaded and transformed our data:
+all_counties <- rcahelpr::saipe_state_and_county %>%
+  # Notice that the state and nation `County FIPS Code` is "000"
+  filter(`County FIPS Code` != "000") %>%
+  # Select and rename:
+  select(name = Name,
+         postal = `Postal Code`,
+         poverty_percent_0_17 = `Poverty Percent, Age 0-17`,
+         median_household_income = `Median Household Income`) %>%
+  # If observation is CA then return a TRUE for all values
+  mutate(is_ca = if_else(postal == "CA", "California", "Other State"))
+```
+
+With data in hand, we began by building a basic ggplot graph using:
+
+1. data 
+2. aesthetic mapping to match variables to featreus of the graph
+3. a simple geom to add points
+
+```{r}
+ggplot(data = all_counties,
+       aes(x = median_household_income,
+           y = poverty_percent_0_17)) +
+  geom_point()
+```
+
+Next, we added other aesthetic characteristics, such as color based on a variable from the data:
+
+```{r}
+ggplot(data = all_counties,
+       aes(x = median_household_income,
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  geom_point()
+```
+
+After that, we explored other geoms and learned that we can layer these on top of each other to create a richer visual:
+
+```{r}
+ggplot(data = all_counties,
+       aes(x = median_household_income,
+           y = poverty_percent_0_17,
+           color = is_ca)) +
+  # add attributes to a geom
+  geom_point(alpha = 0.25) +
+  # add a geom
+  geom_smooth()
+```
+
+Upon layering geoms, we have to consider which aesthetics should be mapped to each layer, so we modified our mapping to address the purpose of each geom:
+
+```{r}
+ggplot(data = all_counties) +
+  geom_point(aes(x = median_household_income,
+           y = poverty_percent_0_17,
+           color = is_ca), alpha = 0.25) +
+  geom_smooth(aes(x = median_household_income,
+           y = poverty_percent_0_17))
+```
+
+Then we explored the labeling features of the ggplot:
+
+```{r}
+ggplot(data = all_counties) +
+  geom_point(aes(x = median_household_income,
+           y = poverty_percent_0_17,
+           color = is_ca), alpha = 0.25) +
+  geom_smooth(aes(x = median_household_income,
+           y = poverty_percent_0_17)) + 
+  labs(
+    title = "Poverty Percent for 0 to 17 Year Olds by Median Household Income",
+    subtitle = "Poverty data for 2021 at the County level",
+    y = "County Poverty Percent, 0 to 17",
+    x = "Median Household Income",
+    color = "County Location",
+    caption =  "Source: US Census, SAIPE State and County Estimates for 2021")
+```
+
+After that, we learned about scales for the axes and colors:
+
+```{r}
+ggplot(data = all_counties) +
+  geom_point(aes(x = median_household_income,
+           y = poverty_percent_0_17,
+           color = is_ca), alpha = 0.25) +
+  geom_smooth(aes(x = median_household_income,
+           y = poverty_percent_0_17)) + 
+  labs(
+    title = "Poverty Percent for 0 to 17 Year Olds by Median Household Income",
+    subtitle = "Poverty data for 2021 at the County level",
+    y = "County Poverty Percent, 0 to 17",
+    x = "Median Household Income",
+    color = "County Location",
+    caption =  "Source: US Census, SAIPE State and County Estimates for 2021") +
+  scale_x_continuous(breaks = c(20000, 40000, 60000, 80000, 100000, 120000, 
+                                140000, 160000),
+                     labels = scales::comma) +
+  scale_y_continuous(limits = c(0, 100),
+                     labels = scales::percent_format(scale = 1)) + scale_color_brewer(palette = "Set1", type = "qual")
+```
+
+In the next iteration set of videos, we will talk in more detail about how to manipulate the theme of your graph and change all types of qualities. For now, know that you can add precanned themes, which include preset characteristics of the graph:
+
+```{r}
+ggplot(data = all_counties) +
+  geom_point(aes(x = median_household_income,
+           y = poverty_percent_0_17,
+           color = is_ca), alpha = 0.25) +
+  geom_smooth(aes(x = median_household_income,
+           y = poverty_percent_0_17)) + 
+  labs(
+    title = "Poverty Percent for 0 to 17 Year Olds by Median Household Income",
+    subtitle = "Poverty data for 2021 at the County level",
+    y = "County Poverty Percent, 0 to 17",
+    x = "Median Household Income",
+    color = "County Location",
+    caption =  "Source: US Census, SAIPE State and County Estimates for 2021") +
+  scale_x_continuous(breaks = c(20000, 40000, 60000, 80000, 100000, 120000, 
+                                140000, 160000),
+                     labels = scales::comma) +
+  scale_y_continuous(limits = c(0, 100),
+                     labels = scales::percent_format(scale = 1)) + scale_color_brewer(palette = "Set1", type = "qual") +
+  # theme_light()
+  # theme_dark()
+  theme_minimal()
+```
+
+Now the figure is complete and ready to be exported and saved to a file. This can be achieved easily using `ggsave()`, which can write, by default, the most recent generated figure into different formats (e.g., jpeg, png, pdf) according to the file extension. So, for example, to create a pdf version of the above figure with a dimension of 6×4 inches:
+
+```{r}
+# save last ggplot you called
+ggsave("scatter.png", width = 6, height = 4)
+```
+
+This walkthrough gets you started with ggplot2; however, there is a lot more to learn! In the future, we will talk about other types of visualization (e.g., histograpms, bar charts, line charts) and turn them into publication worthy graphics. 
+
+Keep an eye for other resources such as:
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/)
+- [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf)
+- [Wickham's ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)
+- [ggplot2 gallery for inspo](https://r-graph-gallery.com/)
+- [UCR's Intro to ggplot2](https://uc-r.github.io/ggplot_intro)
