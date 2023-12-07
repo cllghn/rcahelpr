@@ -40,6 +40,6 @@ out[c("FIPStxt", "State FIPS Code", "County FIPS Code", "Area_Name",
       "Median Household Income", "CENSUS_2020_POP", "ESTIMATES_BASE_2020",
       "POP_ESTIMATE_2020", "POP_ESTIMATE_2021", "POP_ESTIMATE_2022")
     ]
-write.csv(out, file = "data-raw/poverty_and_population_by_county.csv", row.names = FALSE)
+out <- write.csv(out, file = "data-raw/poverty_and_population_by_county.csv", row.names = FALSE)
 # out['test'] <- out$`Poverty Estimate, All Ages` / out$CENSUS_2020_POP * 100
 # out[c("test", "Poverty Percent, All Ages")]
