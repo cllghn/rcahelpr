@@ -33,13 +33,13 @@ usethis::use_data(saipe_state_and_county, overwrite = TRUE)
 # Stuff for HW:
 out <- merge(saipe_state_and_county, population_estimates,
              by.x = 'FIPStxt', by.y = 'FIPStxt')
-out[c("FIPStxt", "State FIPS Code", "County FIPS Code", "Area_Name", 
+out <- out[c("FIPStxt", "State FIPS Code", "County FIPS Code", "Area_Name", 
       "Postal Code", "Poverty Estimate, All Ages",
       "Poverty Estimate, Age 0-17",  
       "Poverty Estimate, Age 5-17 in Families",
       "Median Household Income", "CENSUS_2020_POP", "ESTIMATES_BASE_2020",
       "POP_ESTIMATE_2020", "POP_ESTIMATE_2021", "POP_ESTIMATE_2022")
     ]
-out <- write.csv(out, file = "data-raw/poverty_and_population_by_county.csv", row.names = FALSE)
+write.csv(out, file = "data-raw/poverty_and_population_by_county.csv", row.names = FALSE)
 # out['test'] <- out$`Poverty Estimate, All Ages` / out$CENSUS_2020_POP * 100
 # out[c("test", "Poverty Percent, All Ages")]
