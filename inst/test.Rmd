@@ -1,0 +1,126 @@
+---
+title: "Untitled"
+output: html_document
+date: "2023-12-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE)
+```
+
+```{r}
+library(data.table)
+```
+
+
+```{r}
+encode_variables <- function(df, vars) {
+  stopifnot("`df` must be a data.frame" = is.data.frame(df))
+  stopifnot("`vars` must be in df" = all(vars %in% names(df)))
+  
+  data.table::setDT(df)
+  
+  
+  return(class(df))
+}
+```
+
+Identify paths:
+
+```{r}
+prism <- csgjcr::csg_sp_path("JR_Monitoring/Wyoming/Data/DOC/Excel Raw Files/PRISM") 
+pp <- csgjcr::csg_sp_path("JR_Monitoring/Wyoming/Data/DOC/Excel Raw Files/Supervision Snapshot") 
+```
+
+Ingest monthly data:
+
+
+```{r}
+# List all files for 2023.
+prism_2023_paths <- list.files(path = prism, pattern = "\\s(2023)\\s", 
+                               full.names = TRUE)
+# Read them all, add a month identifier, bind them.
+prism_2023 <- lapply(prism_2023_paths, function(x){
+  out <- readxl::read_xlsx(x)
+  out['reportedfor'] <- gsub("\\s(2023).*", "_2023",
+                             strsplit(x, '/')[[1]][length(strsplit(x, '/')[[1]])])
+  return(out)
+  }) |> rbindlist()
+```
+
+```{r}
+pp_2023_paths <- list.files(path = pp, pattern = "\\s(2023)\\s", 
+                               full.names = TRUE)
+
+# Read them all, add a month identifier, bind them.
+pp_2023 <- lapply(pp_2023_paths, function(x){
+  out <- readxl::read_xlsx(x, 
+                           col_types = c("numeric", "numeric", "text", "text", 
+                                         "text", "text", "text", "text", "text",
+                                         "text","text","text","text"))
+  out['reportedfor'] <- paste0(
+    strsplit(
+      strsplit(x, '/')[[1]][length(strsplit(x, '/')[[1]])],
+      " ")[[1]][1],
+    "_2023")
+  # Remove missing date strings for NA
+  if (inherits(out[['BIRTH_DATE']], "character")) {
+    out[['BIRTH_DATE']] <-  gsub("NULL", NA_character_, out[['BIRTH_DATE']])
+    }
+  return(out)
+  }) |> rbindlist()
+```
+
+Are there any multiple `EVTID` per report month?
+
+```{r}
+any(pp_2023[, .N, by = .(EVTID, reportedfor)][, N] |> unlist() > 1)
+```
+
+Are there any multiple `EVTID` per report month?
+
+```{r}
+any(prism_2023[, .N, by = .(EVTID, reportedfor)][, N] |> unlist() > 1)
+```
+
+There are multiple `EVTID` in a given month b/c a person can have multiple interactions.
+
+Let's left join the `pp_2023` table to the `prism_2023` table:
+
+```{r}
+prism_pp <- merge(x = prism_2023, y = pp_2023, by = c("EVTID", "reportedfor"), 
+                  all.x = TRUE)
+```
+
+
+```{r}
+# el <- cbind(a = as.factor(prism_pp[, EVTID]),
+#             b = as.factor(prism_pp[, EVTID]))
+# mat <- matrix(0, length(prism_pp[, EVTID]), length(prism_pp[, EVTID]))
+# mat[el] <- 1
+# t <- do.call(paste, as.data.frame(mat))
+# unique(t) |> length()
+```
+
+
+```{r}
+prism_pp$EVENTDATE <- as.Date(prism_pp$EVENTDATE)
+rcahelpr::visualize_sngl_var(prism_pp, var="EVENTDATE", xlab = "test", binwidth = 1)
+```
+
+```{r}
+as.Date(prism_pp$EVENTDATE)
+```
+
+
+```{r}
+rcahelpr::encode_variables(prism_pp, c("EVTID", "EVENTTYPE"), tag = FALSE)
+```
+
+
+
+
+
+
+

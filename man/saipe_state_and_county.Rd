@@ -5,7 +5,7 @@
 \alias{saipe_state_and_county}
 \title{Small Area Income and Poverty Estimates (SAIPE) State and County Estimates for 2021}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 3195 rows and 11 columns.
+An object of class \code{data.frame} with 3195 rows and 11 columns.
 }
 \source{
 \url{https://www.census.gov/data/datasets/2021/demo/saipe/2021-state-and-county.html}
