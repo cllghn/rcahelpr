@@ -19,7 +19,11 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
+  data.table,
+  forcats,
+  ggplot2,
   kableExtra,
+  plotly,
   tools,
   stats
 Depends:
