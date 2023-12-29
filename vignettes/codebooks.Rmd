@@ -1,0 +1,42 @@
+---
+title: '📚 Codebooks'
+output: html_document
+always_allow_html: true
+---
+
+Codebooks are often to provide a comprehensive guide to the variables and coding schemes in a data set, ensuring consistent and accurate interpretation of data. They serve as a reference tool to facilitate understanding and analysis of complex data structures by researchers and analysts. 
+
+To support this crucial functionality, we include a codebook function into this package:
+
+```{r}
+# Load the library
+library(rcahelpr)
+
+# Create a test data set
+test <- data.frame(
+  "person" = c("chris", "maeve", "joseph", "brooks"),
+  "org" = c("csg", "wdoc", "ccjbh", "asu"),
+  "years_in_org" = c(1, 0.3, 0.2, NA),
+  "role" = as.factor(c("mentor", "rca", "rca", "mentor")),
+  "date" = as.Date(c("2020-01-01", "2020-01-01", NA, "2020-01-02"))
+)
+
+# Create codebook
+make_codebook(input_df = test, return_df = FALSE, escape = FALSE)
+```
+
+Should you want to add information to describe the variables described in the codebook, you can do so by left joining and additional data set:
+
+```{r}
+# Set a secondary data.frame describing the variables in your original data set
+more <- data.frame(
+  "vars" = c("person", "org", "years_in_org", "role"),
+  "description" = rep("Interesting details about my variable.", 4),
+  "origin" = rep("Detailed notes on where the data came from.", 4),
+  "notes" = rep("Yet more useful information", 4)
+)
+
+# Create codebook
+make_codebook(input_df = test, return_df = FALSE, escape = FALSE,
+              extra_vars = more, extra_key = "vars")
+```

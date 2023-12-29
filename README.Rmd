@@ -1,179 +1,34 @@
 ---
-title: '{rcahelpr}'
 output: github_document
 always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# {rcahelpr}
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 ## ❓ What and Why is This?
-In short, a tool to support the Resident Corrections Analyst program through bespoke functions written in R and data sets for learning purposes. Interested? You can install is using R:
+
+In short, a tool to support the Resident Corrections Analyst (RCA) intiative through bespoke functions written in R and data sets for learning purposes. 
+
+The library contains functions to address common exploratory data analysis tasks (e.g., codebook making and visualization) and some data sets used in RCA efforts.
+
+## 🏁 Getting Started
+
+Interested? You can install is using R. This will require a prior installation of the **{remotes}** package.
 
 ```{r, eval=FALSE}
 remotes::install_github("cllghn/rcahelpr")
 ```
 
-
-## 🔎 Examples
-
-### 📚 Codebooks
-
-Codebooks are often to provide a comprehensive guide to the variables and coding schemes in a data set, ensuring consistent and accurate interpretation of data. They serve as a reference tool to facilitate understanding and analysis of complex data structures by researchers and analysts. To support this crucial functionality, we include a codebook function into this package:
+Once the package is installed, you may load it using the `library()` function or access invidivual objects using the `::` accesor. 
 
 ```{r}
-# Load the library
 library(rcahelpr)
-
-# Create a test data set
-test <- data.frame(
-  "person" = c("chris", "maeve", "joseph", "brooks"),
-  "org" = c("csg", "wdoc", "ccjbh", "asu"),
-  "years_in_org" = c(1, 0.3, 0.2, NA),
-  "role" = as.factor(c("mentor", "rca", "rca", "mentor")),
-  "date" = as.Date(c("2020-01-01", "2020-01-01", NA, "2020-01-02"))
-)
-
-# Create codebook
-make_codebook(input_df = test, return_df = FALSE, escape = FALSE)
-```
-
-Should you want to add information to describe the variables described in the codebook, you can do so by left joining and additional data set:
-
-```{r}
-# Set a secondary data.frame describing the variables in your original data set
-more <- data.frame(
-  "vars" = c("person", "org", "years_in_org", "role"),
-  "description" = rep("Interesting details about my variable.", 4),
-  "origin" = rep("Detailed notes on where the data came from.", 4),
-  "notes" = rep("Yet more useful information", 4)
-)
-
-# Create codebook
-make_codebook(input_df = test, return_df = FALSE, escape = FALSE,
-              extra_vars = more, extra_key = "vars")
-```
-
-### 📊 Data
-
-Some key data sets, for learning or general use have been included in the library. Access them using the `::` accessor:
-
-```{r}
-str(rcahelpr::hpsa_primarycare)
-```
-
-This means that we can use these data for a range of purposes, such as pairing them with other libraries and analyzing it:
-
-```{r, fig.height=10}
-# Load the graphing library ggplot2 and data management library dplyr
-library(dplyr)
-library(forcats)
-library(ggplot2)
-
-# Wrangle some data to identify the average Health Professional Shortage Area 
-# (HPSA) score in a given county:
-demo <- rcahelpr::hpsa_primarycare %>%
-  group_by(County_Equivalent_Name) %>%
-  summarize(mean_hpsa_score = mean(HPSA_Score),
-            total_hpsa_population = sum(HPSA_Designation_Population))
-
-# Make a beautiful graph
-ggplot(data = demo) +
-  geom_point(aes(x = total_hpsa_population , y = fct_rev(County_Equivalent_Name),
-                 color = mean_hpsa_score)) +
-  geom_segment(aes(x = 0 , xend = total_hpsa_population ,
-                   y = County_Equivalent_Name, yend = County_Equivalent_Name,
-                   color = mean_hpsa_score)) +
-  theme_minimal() +
-  labs(title = "Affected Populations in HPSA by County",
-       subtitle = "HPSA scores determine priorities for the assignment of clinitians",
-       caption = "Data from CCHS") +
-  xlab("Total Population in all County HPSAs") +
-  ylab("") +
-  scale_color_gradient2(low="#F5F5DC", mid = "#FFA500", high="#8B0000", 
-                        midpoint = mean(demo$mean_hpsa_score),
-                        name = "Average County HPSA Score") +
-  theme(legend.position = "bottom")
-
-
-```
-
-Also, the data and functions in this package can be combined:
-
-```{r}
-make_codebook(input_df = rcahelpr::hpsa_primarycare, return_df = FALSE, 
-              escape = FALSE)
-```
-
-### 📈 Visualizations
-
-In effort to support data exploration and codebook making, the library also contains functions to generate single variable descriptive graphs based on a variable's class. For example, take the `County_Equivalent_Name` variable from the  `hpsa_primarycare` data set, which is a character. By passing this data set and variable to the `visualize_sngl_var()` we get a graph with bars presenting the count of each variable. More specifically, the function takes unsummarized data and returns summarized scores where each observation contributes to one unit of height for each bar. Lastly, in the example below, we set the `flip` argument to `TRUE` in order to pivot the graph on its x-axis.
-
-```{r, fig.height=6}
-rcahelpr::visualize_sngl_var(df = rcahelpr::hpsa_primarycare,
-                             var = "County_Equivalent_Name",
-                             xlab = "County",
-                             flip = TRUE)
-```
-
-In the prior example, the `df`, `var`, and `xlab` arguments are requirements, the rest are optional. Among other optional features is the ability to change the y-axis labels somewhat easily:
-
-```{r, fig.height=6}
-rcahelpr::visualize_sngl_var(df = rcahelpr::hpsa_primarycare,
-                             var = "County_Equivalent_Name",
-                             xlab = "County",
-                             flip = TRUE,
-                             ylab = "Count of apperances")
-```
-
-Another optional feature is the ability to pass the function custom ggplot themes:
-
-```{r, fig.height=6}
-my_theme <- ggplot2::theme_minimal()
-
-rcahelpr::visualize_sngl_var(df = rcahelpr::hpsa_primarycare,
-                             var = "County_Equivalent_Name",
-                             xlab = "County",
-                             flip = TRUE,
-                             ylab = "Count of apperances",
-                             theme = my_theme)
-```
-
-Note that the function automatically adapts to working with numeric variables:
-
-```{r}
-rcahelpr::visualize_sngl_var(df = rcahelpr::hpsa_primarycare,
-                             var = "HPSA_Score",
-                             xlab = "HPSA SCORE")
-```
-
-Under the hood, the function acknowledges that the declared variable is continues and proceeds to generate a histogram, which bins the data, then counts the number of observations in each bin. You can control the width of the bins with the `binwidth` argument. It is very important to experiment with the bin width. The default just splits your data into 30 bins, which is unlikely to be the best choice. You should always try many bin widths, and you may find you need multiple bin widths to tell the full story of your data. For example:
-
-```{r}
-rcahelpr::visualize_sngl_var(df = rcahelpr::hpsa_primarycare,
-                             var = "HPSA_Score",
-                             xlab = "HPSA SCORE",
-                             binwidth = 10)
-```
-
-Or:
-
-
-```{r}
-rcahelpr::visualize_sngl_var(df = rcahelpr::hpsa_primarycare,
-                             var = "HPSA_Score",
-                             xlab = "HPSA SCORE",
-                             binwidth = 1)
-```
-Out of the two experiments above, it appears that a `binwidth` of 1 fits the data a little nicer. Let's polish this graph up a little like we did above:
-
-```{r}
-rcahelpr::visualize_sngl_var(df = rcahelpr::hpsa_primarycare,
-                             var = "HPSA_Score",
-                             xlab = "HPSA Score",
-                             ylab = "Count",
-                             binwidth = 1,
-                             theme = my_theme)
 ```
 
