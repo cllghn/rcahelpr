@@ -96,13 +96,12 @@ order to pivot the graph on its x-axis.</p>
 <span>                             var <span class="op">=</span> <span class="st">"County_Equivalent_Name"</span>,</span>
 <span>                             xlab <span class="op">=</span> <span class="st">"County"</span>,</span>
 <span>                             flip <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## {rcahelpr} loaded! Happy nerding.</span></span></code></pre>
 <p><img src="visualizations_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 <p>In the prior example, the <code>df</code>, <code>var</code>, and
 <code>xlab</code> arguments are requirements, the rest are optional.
 Among other optional features is the ability to change the y-axis labels
 and setting a cuttoff for larger data somewhat easily:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">rcahelpr</span><span class="fu">::</span><span class="fu"><a href="../reference/visualize_sngl_var.html">visualize_sngl_var</a></span><span class="op">(</span>df <span class="op">=</span> <span class="fu">rcahelpr</span><span class="fu">::</span><span class="va"><a href="../reference/hpsa_primarycare.html">hpsa_primarycare</a></span>,</span>
 <span>                             var <span class="op">=</span> <span class="st">"County_Equivalent_Name"</span>,</span>
 <span>                             xlab <span class="op">=</span> <span class="st">"County"</span>,</span>
@@ -112,7 +111,7 @@ and setting a cuttoff for larger data somewhat easily:</p>
 <p><img src="visualizations_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <p>Another optional feature is the ability to pass the function custom
 ggplot themes:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_theme</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">rcahelpr</span><span class="fu">::</span><span class="fu"><a href="../reference/visualize_sngl_var.html">visualize_sngl_var</a></span><span class="op">(</span>df <span class="op">=</span> <span class="fu">rcahelpr</span><span class="fu">::</span><span class="va"><a href="../reference/hpsa_primarycare.html">hpsa_primarycare</a></span>,</span>
@@ -125,7 +124,7 @@ ggplot themes:</p>
 <p><img src="visualizations_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>Note that the function automatically adapts to working with numeric
 variables:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">rcahelpr</span><span class="fu">::</span><span class="fu"><a href="../reference/visualize_sngl_var.html">visualize_sngl_var</a></span><span class="op">(</span>df <span class="op">=</span> <span class="fu">rcahelpr</span><span class="fu">::</span><span class="va"><a href="../reference/hpsa_primarycare.html">hpsa_primarycare</a></span>,</span>
 <span>                             var <span class="op">=</span> <span class="st">"HPSA_Score"</span>,</span>
 <span>                             xlab <span class="op">=</span> <span class="st">"HPSA SCORE"</span><span class="op">)</span></span></code></pre></div>
@@ -138,14 +137,14 @@ important to experiment with the bin width. The default just splits your
 data into 30 bins, which is unlikely to be the best choice. You should
 always try many bin widths, and you may find you need multiple bin
 widths to tell the full story of your data. For example:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">rcahelpr</span><span class="fu">::</span><span class="fu"><a href="../reference/visualize_sngl_var.html">visualize_sngl_var</a></span><span class="op">(</span>df <span class="op">=</span> <span class="fu">rcahelpr</span><span class="fu">::</span><span class="va"><a href="../reference/hpsa_primarycare.html">hpsa_primarycare</a></span>,</span>
 <span>                             var <span class="op">=</span> <span class="st">"HPSA_Score"</span>,</span>
 <span>                             xlab <span class="op">=</span> <span class="st">"HPSA SCORE"</span>,</span>
 <span>                             binwidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p><img src="visualizations_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>Or:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">rcahelpr</span><span class="fu">::</span><span class="fu"><a href="../reference/visualize_sngl_var.html">visualize_sngl_var</a></span><span class="op">(</span>df <span class="op">=</span> <span class="fu">rcahelpr</span><span class="fu">::</span><span class="va"><a href="../reference/hpsa_primarycare.html">hpsa_primarycare</a></span>,</span>
 <span>                             var <span class="op">=</span> <span class="st">"HPSA_Score"</span>,</span>
 <span>                             xlab <span class="op">=</span> <span class="st">"HPSA SCORE"</span>,</span>
@@ -154,7 +153,7 @@ widths to tell the full story of your data. For example:</p>
 <p>Out of the two experiments above, it appears that a
 <code>binwidth</code> of 1 fits the data a little nicer. Let’s polish
 this graph up a little like we did above:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">rcahelpr</span><span class="fu">::</span><span class="fu"><a href="../reference/visualize_sngl_var.html">visualize_sngl_var</a></span><span class="op">(</span>df <span class="op">=</span> <span class="fu">rcahelpr</span><span class="fu">::</span><span class="va"><a href="../reference/hpsa_primarycare.html">hpsa_primarycare</a></span>,</span>
 <span>                             var <span class="op">=</span> <span class="st">"HPSA_Score"</span>,</span>
 <span>                             xlab <span class="op">=</span> <span class="st">"HPSA Score"</span>,</span>

@@ -26,7 +26,7 @@ Interested? You can install is using R. This will require a prior installation o
 remotes::install_github("cllghn/rcahelpr")
 ```
 
-Once the package is installed, you may load it using the `library()` function or access invidivual objects using the `::` accesor. 
+Once the package is installed, you may load it using the `library()` function or access individual objects using the `::` accessor. 
 
 ```{r}
 library(rcahelpr)
