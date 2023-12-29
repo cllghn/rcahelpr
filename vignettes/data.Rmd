@@ -1,0 +1,54 @@
+---
+title: '📊 Data'
+output: html_document
+always_allow_html: true
+---
+
+Some key data sets, for learning or general use have been included in the library. Access them using the `::` accessor:
+
+```{r}
+str(rcahelpr::hpsa_primarycare)
+```
+
+This means that we can use these data for a range of purposes, such as pairing them with other libraries and analyzing it:
+
+```{r, fig.height=10, warning=FALSE, message=FALSE}
+# Load the graphing library ggplot2 and data management library dplyr
+library(dplyr)
+library(forcats)
+library(ggplot2)
+
+# Wrangle some data to identify the average Health Professional Shortage Area 
+# (HPSA) score in a given county:
+demo <- rcahelpr::hpsa_primarycare %>%
+  group_by(County_Equivalent_Name) %>%
+  summarize(mean_hpsa_score = mean(HPSA_Score),
+            total_hpsa_population = sum(HPSA_Designation_Population))
+
+# Make a beautiful graph
+ggplot(data = demo) +
+  geom_point(aes(x = total_hpsa_population , y = fct_rev(County_Equivalent_Name),
+                 color = mean_hpsa_score)) +
+  geom_segment(aes(x = 0 , xend = total_hpsa_population ,
+                   y = County_Equivalent_Name, yend = County_Equivalent_Name,
+                   color = mean_hpsa_score)) +
+  theme_minimal() +
+  labs(title = "Affected Populations in HPSA by County",
+       subtitle = "HPSA scores determine priorities for the assignment of clinitians",
+       caption = "Data from CCHS") +
+  xlab("Total Population in all County HPSAs") +
+  ylab("") +
+  scale_color_gradient2(low="#F5F5DC", mid = "#FFA500", high="#8B0000", 
+                        midpoint = mean(demo$mean_hpsa_score),
+                        name = "Average County HPSA Score") +
+  theme(legend.position = "bottom")
+
+
+```
+
+Also, the data and functions in this package can be combined:
+
+```{r}
+rcahelpr::make_codebook(input_df = rcahelpr::hpsa_primarycare, return_df = FALSE, 
+              escape = FALSE)
+```

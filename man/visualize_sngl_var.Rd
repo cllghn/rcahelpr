@@ -12,6 +12,7 @@ visualize_sngl_var(
   theme = NULL,
   widget = FALSE,
   flip = FALSE,
+  cutoff = 30,
   ...
 )
 }
@@ -21,10 +22,12 @@ visualize_sngl_var(
 \item{var}{A character representing the name of a single variable of a given
 data frame.}
 
-\item{xlab}{An required character representing the label that will be places
-on the x-axis.}
+\item{xlab}{An required character value representing the label that will be
+placed on the x-axis. You may be asking, why do I need to provide this when
+the variable named is also required. Simply, so that the user can explicitly
+decide how the variable label will be printed for users.}
 
-\item{ylab}{An optional character representing the label that will be places
+\item{ylab}{An optional character representing the label that will be placed
 on the y-axis.}
 
 \item{theme}{A ggplot theme used to tweak the display of the graph.}
@@ -35,7 +38,13 @@ returned as an interactive HTML widget powered by the {plotly} library.}
 \item{flip}{A boolean which defaults to \code{FALSE}. When \code{TRUE}, the graph is
 turned on its axis.}
 
-\item{...}{Other arguments passed on to the geom functions.}
+\item{cutoff}{A numeric value used to select the number of variables that
+will be graphed when working with categorical data. This value is intended to
+limit the amount of bars plotted and make graphs more legible. Defaults to a
+value of 30.}
+
+\item{...}{Other arguments passed on to the geom, labs, ggplotly, or plotly
+config functions.}
 }
 \description{
 An opinionated function that delivers single varible descriptive graphs based
