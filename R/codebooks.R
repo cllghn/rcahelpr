@@ -5,7 +5,8 @@
 #' 
 #' @examples
 #' \dontrun{
-#' ex <- as.Date(c("2020-01-01", "2020-01-01", "2020-01-01", "2020-01-01", "2020-01-02", "2020-01-02", "2020-01-03", "2020-01-03"))
+#' ex <- as.Date(c("2020-01-01", "2020-01-01", "2020-01-01", "2020-01-01", 
+#' "2020-01-02", "2020-01-02", "2020-01-03", "2020-01-03"))
 #' modefinder(ex)
 #' }
 #' 
@@ -17,9 +18,21 @@ modefinder <- function(v, na.rm = TRUE) {
 }
 
 #' @keywords internal
+classcleaner <- function(variable) {
+  # Grab only the first class
+  temp <- class(variable)[[1]]
+  if (temp %in% c("Date", "POSIXct", "POSIXlt")) {
+    out <- "Date"
+  } else {
+      out <- temp
+  }
+  return(out)
+}
+
+#' @keywords internal
 statisticstmaker <- function(column) {
   stats <- switch(
-    class(column),
+    classcleaner(column),
     "Date" = sprintf(
       "Min: %s <br> Mode: %s <br> Max: %s <br> Time difference: %s days",
       min(column, na.rm = TRUE), modefinder(column), max(column, na.rm = TRUE),
@@ -84,7 +97,7 @@ statisticstmaker <- function(column) {
 #' @keywords internal
 valuemaker <- function(column) {
   valid <- switch(
-    class(column),
+    classcleaner(column),
     "Date" = sprintf(
       "Date rage from %s to %s.",
       min(column, na.rm = TRUE), max(column, na.rm = TRUE)
@@ -183,7 +196,7 @@ make_codebook <- function(input_df, return_df = TRUE, format = NULL,
   out <- data.frame(
     "Variable Name" = names(input_df),
     "Data Class" = tools::toTitleCase(
-      sapply(names(input_df), \(x) class(input_df[[x]]))
+      sapply(names(input_df), \(x) classcleaner(input_df[[x]]))
     ),
     "Valid Values" = sapply(
       names(input_df), \(x) valuemaker(input_df[[x]])
